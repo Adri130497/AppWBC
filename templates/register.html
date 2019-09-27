@@ -3,13 +3,9 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!------ Include the above in your HEAD tag ---------->
-
-
-
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='register.css')}}">
 
 
@@ -23,7 +19,7 @@
            <nav class="nav-extended">
 
     <div class="nav-content">
-      <ul class="tabs tabs-transparent">
+      <ul class="tabs tabs-transparent" style="background-color: #28a745">
         <li class="tab"><a href="#test1">Boxeador</a></li>
         <li class="tab"><a class="active" href="#test2">Entrenador</a></li>
         <li class="tab"><a href="#test3">Referee</a></li>
@@ -35,108 +31,213 @@
 <body>
 
   <!-- Boxeador-->
-  <div id="test1" class="col s12">
+  <div id="test1" class="col s12" style="padding-top: 20px">
     <div class="container">
             <form class="form-horizontal" role="form">
-                <h2>Registo Boxeador</h2>
+                <h2>Registrar Boxeador</h2>
                 <div class="form-group">
-                    <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                    <label for="firstName" class="col-sm-3 control-label">Nombre(s)</label>
                     <div class="col-sm-9">
-                        <input type="text" id="firstName" placeholder="First Name" class="form-control" autofocus>
+                        <input type="text" id="nombre-boxeador" name="nombre-boxeador" placeholder="Nombre(s)" class="form-control" autofocus>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+                    <label for="lastName" class="col-sm-3 control-label">Apellido Paterno</label>
                     <div class="col-sm-9">
-                        <input type="text" id="lastName" placeholder="Last Name" class="form-control" autofocus>
+                        <input type="text" id="apellido-pat-boxeador" name="apellido-pat-boxeador" placeholder="Apellido Paterno" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Apellido Materno</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="apellido-mat-boxeador" name="apellido-mat-boxeador"  placeholder="Apellido Materno" class="form-control" autofocus>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email" class="col-sm-3 control-label">Email* </label>
                     <div class="col-sm-9">
-                        <input type="email" id="email" placeholder="Email" class="form-control" name= "email">
+                        <input type="email" id="email" name="email" placeholder="Email" class="form-control" name= "email">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-sm-3 control-label">Password*</label>
                     <div class="col-sm-9">
-                        <input type="password" id="password" placeholder="Password" class="form-control">
+                        <input type="password" id="password" name="password" placeholder="Password" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password" class="col-sm-3 control-label">Confirm Password*</label>
+                    <label for="password" class="col-sm-3 control-label">Confirmar Password*</label>
                     <div class="col-sm-9">
-                        <input type="password" id="password" placeholder="Password" class="form-control">
+                        <input type="password" id="password" name="password"  placeholder="Password" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="birthDate" class="col-sm-3 control-label">Date of Birth*</label>
+                    <label for="birthDate" class="col-sm-3 control-label">Fecha de Nacimiento*</label>
                     <div class="col-sm-9">
-                        <input type="date" id="birthDate" class="form-control">
+                        <input type="date" id="birthDate" name="birthDate" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="phoneNumber" class="col-sm-3 control-label">Phone number </label>
+                    <label for="phoneNumber" class="col-sm-3 control-label">Número de casa* </label>
                     <div class="col-sm-9">
-                        <input type="phoneNumber" id="phoneNumber" placeholder="Phone number" class="form-control">
-                        <span class="help-block">Your phone number won't be disclosed anywhere </span>
+                        <input type="phoneNumber" id="tel-casa" name="tel-casa" placeholder="Número de casa" class="form-control">
+                        <span class="help-block">Su número de teléfono no se mostrará en ningún lado.</span>
                     </div>
                 </div>
                 <div class="form-group">
-                        <label for="Height" class="col-sm-3 control-label">Height* </label>
+                    <label for="phoneNumber" class="col-sm-3 control-label">Número celular</label>
                     <div class="col-sm-9">
-                        <input type="number" id="height" placeholder="Please write your height in centimetres" class="form-control">
-                    </div>
-                </div>
-                 <div class="form-group">
-                        <label for="weight" class="col-sm-3 control-label">Weight* </label>
-                    <div class="col-sm-9">
-                        <input type="number" id="weight" placeholder="Please write your weight in kilograms" class="form-control">
+                        <input type="phoneNumber" id="tel-celular" name="tel-celular" placeholder="Número celular" class="form-control">
+                        <span class="help-block">Su número de teléfono no se mostrará en ningún lado.</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Gender</label>
+                    <label class="control-label col-sm-3">Sexo* </label>
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-4">
                                 <label class="radio-inline">
-                                    <input type="radio" id="femaleRadio" value="Female">Female
+                                    <input type="radio" id="femaleRadio" name="femaleRadio" value="Female">Femenino
                                 </label>
                             </div>
                             <div class="col-sm-4">
                                 <label class="radio-inline">
-                                    <input type="radio" id="maleRadio" value="Male">Male
+                                    <input type="radio" id="maleRadio" name="maleRadio" value="Male">Masculino
                                 </label>
                             </div>
                         </div>
                     </div>
-                </div> <!-- /.form-group -->
+                </div>
                 <div class="form-group">
-                    <div class="col-sm-9 col-sm-offset-3">
-                        <span class="help-block">*Required fields</span>
+                    <label for="birthDate" class="col-sm-3 control-label">Fecha de Registro* </label>
+                    <div class="col-sm-9">
+                        <input type="date" id="fecha-regis" name="fecha-regis" class="form-control">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Register</button>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Calle* </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="calle-boxeador" name="calle-boxeador" placeholder="Calle" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Número* </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="calle-num-boxeador" name="calle-num-boxeador" placeholder="Calle" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Colonia* </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="colonia-boxeador" name="colonia-boxeador" placeholder="Colonia" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Municipio* </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="municipio-boxeador" name="municipio-boxeador" placeholder="Municipio" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">C.P.* </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="cp-boxeador" mame="cp-boxeador" placeholder="C.P." class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Estado* </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="estado-boxeador" name="estado-boxeador" placeholder="Estado" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="file-field">
+                    <div class="btn btn-primary btn-sm float-left" style="background-color: #28a745">
+                      <span>Fotografía</span>
+                      <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                      <input class="file-path validate" name="foto-boxeador" type="text" placeholder="Subir una foto">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="Height" class="col-sm-3 control-label">Guardia* </label>
+                    <div class="col-sm-9">
+                        <input type="number" id="guardia-boxeador" name="guardia-boxeador" placeholder="Guardia" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="Height" class="col-sm-3 control-label">Tipo de Sangre* </label>
+                    <div class="col-sm-9">
+                        <input type="number" id="sangre-boxeador" name="sangre-boxeador" placeholder="Tipo de Sangre" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="Height" class="col-sm-3 control-label">Estatura* </label>
+                    <div class="col-sm-9">
+                        <input type="number" id="estatura-boxeador" name="estatura-boxeador" placeholder="Ingrese su altura en cm." class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="weight" class="col-sm-3 control-label">Peso* </label>
+                    <div class="col-sm-9">
+                        <input type="number" id="peso-boxeador" name="peso-boxeador" placeholder="Ingrese su peso en Kg." class="form-control">
+                    </div>
+                </div>
+                 <div class="form-group">
+                        <label for="weight" class="col-sm-3 control-label">División* </label>
+                    <div class="col-sm-9">
+                        <select class="browser-default custom-select">
+                            <option selected>División</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="weight" class="col-sm-3 control-label">Alias</label>
+                    <div class="col-sm-9">
+                        <input type="number" id="alias-boxeador" name="alias-boxeador" placeholder="Alias" class="form-control">
+                    </div>
+                </div>
+                 <div class="form-group">
+                        <label for="weight" class="col-sm-3 control-label">Num. de Peleas* </label>
+                    <div class="col-sm-9">
+                        <input type="number" id="peleas-boxeador" name="peleas-boxeador" placeholder="Num. de Peleas" class="form-control">
+                    </div>
+                </div>
+                 <!-- /.form-group -->
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <span class="help-block">*Campos obligatorios</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" style="background-color: #28a745">Registrar</button>
             </form> <!-- /form -->
         </div> <!-- ./container -->
       </div>
 
 <!-- Entrenador-->
-
-  <div id="test2" class="col s12">
+<div id="test1" class="col s12" style="padding-top: 20px">
     <div class="container">
             <form class="form-horizontal" role="form">
-                <h2>Registo Entrenador</h2>
+                <h2>Registrar Boxeador</h2>
                 <div class="form-group">
-                    <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                    <label for="firstName" class="col-sm-3 control-label">Nombre(s)</label>
                     <div class="col-sm-9">
-                        <input type="text" id="firstName" placeholder="First Name" class="form-control" autofocus>
+                        <input type="text" id="nombre-boxeador" placeholder="Nombre(s)" class="form-control" autofocus>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+                    <label for="lastName" class="col-sm-3 control-label">Apellido Paterno</label>
                     <div class="col-sm-9">
-                        <input type="text" id="lastName" placeholder="Last Name" class="form-control" autofocus>
+                        <input type="text" id="apellido-pat-boxeador" placeholder="Apellido Paterno" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Apellido Materno</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="apellido-pat-boxeador" placeholder="Apellido Materno" class="form-control" autofocus>
                     </div>
                 </div>
                 <div class="form-group">
@@ -152,62 +253,153 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password" class="col-sm-3 control-label">Confirm Password*</label>
+                    <label for="password" class="col-sm-3 control-label">Confirmar Password*</label>
                     <div class="col-sm-9">
                         <input type="password" id="password" placeholder="Password" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="birthDate" class="col-sm-3 control-label">Date of Birth*</label>
+                    <label for="birthDate" class="col-sm-3 control-label">Fecha de Nacimiento*</label>
                     <div class="col-sm-9">
                         <input type="date" id="birthDate" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="phoneNumber" class="col-sm-3 control-label">Phone number </label>
+                    <label for="phoneNumber" class="col-sm-3 control-label">Número de casa* </label>
                     <div class="col-sm-9">
-                        <input type="phoneNumber" id="phoneNumber" placeholder="Phone number" class="form-control">
-                        <span class="help-block">Your phone number won't be disclosed anywhere </span>
+                        <input type="phoneNumber" id="tel-casa" placeholder="Número de casa" class="form-control">
+                        <span class="help-block">Su número de teléfono no se mostrará en ningún lado.</span>
                     </div>
                 </div>
                 <div class="form-group">
-                        <label for="Height" class="col-sm-3 control-label">Height* </label>
+                    <label for="phoneNumber" class="col-sm-3 control-label">Número celular</label>
                     <div class="col-sm-9">
-                        <input type="number" id="height" placeholder="Please write your height in centimetres" class="form-control">
-                    </div>
-                </div>
-                 <div class="form-group">
-                        <label for="weight" class="col-sm-3 control-label">Weight* </label>
-                    <div class="col-sm-9">
-                        <input type="number" id="weight" placeholder="Please write your weight in kilograms" class="form-control">
+                        <input type="phoneNumber" id="tel-celular" placeholder="Número celular" class="form-control">
+                        <span class="help-block">Su número de teléfono no se mostrará en ningún lado.</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Gender</label>
+                    <label class="control-label col-sm-3">Sexo* </label>
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-4">
                                 <label class="radio-inline">
-                                    <input type="radio" id="femaleRadio" value="Female">Female
+                                    <input type="radio" id="femaleRadio" value="Female">Femenino
                                 </label>
                             </div>
                             <div class="col-sm-4">
                                 <label class="radio-inline">
-                                    <input type="radio" id="maleRadio" value="Male">Male
+                                    <input type="radio" id="maleRadio" value="Male">Masculino
                                 </label>
                             </div>
                         </div>
                     </div>
-                </div> <!-- /.form-group -->
+                </div>
                 <div class="form-group">
-                    <div class="col-sm-9 col-sm-offset-3">
-                        <span class="help-block">*Required fields</span>
+                    <label for="birthDate" class="col-sm-3 control-label">Fecha de Registro* </label>
+                    <div class="col-sm-9">
+                        <input type="date" id="fecha-regis" class="form-control">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Register</button>
-            </form> <!-- /form -->
-        </div> <!-- ./container -->
-  </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Calle* </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="calle-boxeador" placeholder="Calle" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Número* </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="calle-num-boxeador" placeholder="Calle" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Colonia* </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="colonia-boxeador" placeholder="Colonia" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Municipio* </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="municipio-boxeador" placeholder="Municipio" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">C.P.* </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="cp-boxeador" placeholder="C.P." class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Estado* </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="estado-boxeador" placeholder="Estado" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="file-field">
+                    <div class="btn btn-primary btn-sm float-left" style="background-color: #28a745">
+                      <span>Fotografía</span>
+                      <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                      <input class="file-path validate" type="text" placeholder="Subir una foto">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="Height" class="col-sm-3 control-label">Guardia* </label>
+                    <div class="col-sm-9">
+                        <input type="number" id="guardia-boxeador" placeholder="Guardia" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="Height" class="col-sm-3 control-label">Tipo de Sangre* </label>
+                    <div class="col-sm-9">
+                        <input type="number" id="sangre-boxeador" placeholder="Tipo de Sangre" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="Height" class="col-sm-3 control-label">Estatura* </label>
+                    <div class="col-sm-9">
+                        <input type="number" id="estatura-boxeador" placeholder="Ingrese su altura en cm." class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="weight" class="col-sm-3 control-label">Peso* </label>
+                    <div class="col-sm-9">
+                        <input type="number" id="peso-boxeador" placeholder="Ingrese su peso en Kg." class="form-control">
+                    </div>
+                </div>
+                 <div class="form-group">
+                        <label for="weight" class="col-sm-3 control-label">División* </label>
+                    <div class="col-sm-9">
+                        <select class="browser-default custom-select">
+                            <option selected>División</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="weight" class="col-sm-3 control-label">Alias</label>
+                    <div class="col-sm-9">
+                        <input type="number" id="alias-boxeador" placeholder="Alias" class="form-control">
+                    </div>
+                </div>
+                 <div class="form-group">
+                        <label for="weight" class="col-sm-3 control-label">Num. de Peleas* </label>
+                    <div class="col-sm-9">
+                        <input type="number" id="peleas-boxeador" placeholder="Num. de Peleas" class="form-control">
+                    </div>
+                </div>
+                 <!-- /.form-group -->
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <span class="help-block">*Campos obligatorios</span>
+                    </div>
+                </div>
+
 
 
   <!-- Referee-->
