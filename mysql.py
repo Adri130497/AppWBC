@@ -45,7 +45,7 @@ def register():
         return render_template('register.html',title='Registro')
         email=request.form['email']
 
-        cursor.execute("SELECT * from pruebas where email='" + email+ "'")
+        cursor.execute("SELECT * from usuarios where email='" + email+ "'")
         data=cursor.fetchone()
         if data is None:
             pass
@@ -53,13 +53,16 @@ def register():
             msg='Ya existe el usuario!'
             return render_template('register.html',msg=msg)
 
-
-
     else:
-        agregar_usuario=("INSERT INTO pruebas (nombre,apellidoPat,apellidoMat,email,"\
-        "password,nacimiento,telCasa,celular,sexo,calle,inicio,numeroCalle,colonia,"\
-        "municipio,estado,tipoSangre,guardia,estatura,peso,alias,numPeleas)"\
-        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
+        #USUARIOS
+        agregar_usuario=("INSERT INTO usuarios (nombre,apellido_paterno,apellido_materno,email,"\
+        "contrasena,fecha_nacimiento,telefono_casa,celular,sexo,calle,numero,colonia,fecha_registro,"\
+        "municipio,estado)"\
+        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
+
+        agregar_boxeador=("INSERT INTO boxeadores (id_boxeador,tipo_sangre,guardia,estatura,peso,alias,num_peleas)"\
+        "VALUES (%s,%s,%s,%s,%s,%s,%s)")
+
         userDetails= request.form
         nombre=userDetails['nombre']
         apellidoPat=userDetails['apellidoPat']
@@ -83,14 +86,16 @@ def register():
         peso=userDetails['peso']
         alias=userDetails['alias']
         numPeleas=userDetails['peleas']
-#        codigoPostal=userDetails['codigoPostal']
 
-        user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,inicio,numeroCalle,colonia,municipio,estado,tipoSangre,guardia,estatura,peso,alias,numPeleas)
+        user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,estado)
+
 
 
         if (not nombre or not apellidoMat or not apellidoPat or not email
         or not password or not confirmPassword or not nacimiento or not telCasa
-        or not sexo):
+        or not sexo or not inicio or not calle or not numeroCalle or not colonia
+        or not municipio or not estado or not tipoSangre or not guardia or not estatura
+        or not peso or not numPeleas):
             msg='Favor de llenar todos los campos!'
             return render_template('register.html',msg=msg)
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
@@ -105,38 +110,19 @@ def register():
         else:
 
                 cursor.execute(agregar_usuario,user_data)
-                mysql.connection.commit()
-                print(sexo)
-                cursor.close()
-                return("Success")
 
-    # email=request.form['email']
-    # password=request.form['password']
-    # birthDate=request.form['birthDate']
-    # tel_casa=request.form['tel-casa']
-    # tel_celular=request.form['tel-celular']
-    # fecha_regis=request.form['fecha-regis']
-    # calle=request.form['calle-boxeador']
-    # calle_num=request.form['calle-num-boxeador']
-    # colonia=request.form['colonia-boxeador']
-    # municipio=request.form['municipio-boxeador']
-    # cp=request.form['cp-boxeador']
-    # estado=request.form['estado-boxeador']
-    # foto=request.form['foto-boxeador']
-    # guardia=request.form['guardia-boxeador']
-    # sangre=request.form['sangre-boxeador']
-    # estatura=request.form['estatura-boxeador']
-    # peso=request.form['peso-boxeador']
-    # alias=request.form['alias-boxeador']
-    # peleas=request.form['peleas-boxeador']
-#    cursor.execute("INSERT INTO usuarios")
-#     cursor.execute("INSERT INTO users (nombre,apellido_paterno,apellido_materno,fecha_nacimiento,telefono_casa,celular,email,contrasena,fecha_registro,calle,numero,colonia,municipio,cp,estado,foto) values ("nombre,apellido_pat,apellido_mat,birthDate,tel_casa,tel_celularemail,password,fecha_regis,calle,calle_num,colonia,municipio,cp,estado,foto")")
-#     cursor.execute("INSERT INTO boxeadores (guardia,tipo_sangre,estatura,peso,alias,num_peleas) values ("guardia,sangre,estatura,peso,alias,peleas")")
-#     data=cursor.fetchone()
-#     if data is None:
-#         flash("Llene los campos obligatorios")
-#     else:
-#         return redirect(url_for('home'))
+                #BOXEADORES
+
+                id_user=cursor.execute("SELECT id_usuario FROM usuarios WHERE email ='"+ email + "'")
+                boxeador_data=(id_user,tipoSangre,guardia,estatura,peso,alias,numPeleas)
+
+
+                cursor.execute(agregar_boxeador,boxeador_data)
+                mysql.connection.commit()
+                cursor.close()
+                return redirect(url_for('home'))
+
+
 
 
 #@app.route('/register',methods=['GET', 'POST'])
