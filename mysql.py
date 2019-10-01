@@ -24,7 +24,7 @@ def home():
 
 @app.route('/login',methods=['POST'])
 def login():
-    msg='Usuario o Contraseña Incorrecta!'
+    msg='Usuario o Contraseña Incorrecta'
     username=request.form['user']
     password=request.form['pass']
     cursor=mysql.connect.cursor()
@@ -50,7 +50,7 @@ def register():
         if data is None:
             pass
         else:
-            msg='Ya existe el usuario!'
+            msg='El usuario ya está registrado'
             return render_template('register.html',msg=msg)
 
     else:
@@ -96,10 +96,10 @@ def register():
         or not sexo or not inicio or not calle or not numeroCalle or not colonia
         or not municipio or not estado or not tipoSangre or not guardia or not estatura
         or not peso or not numPeleas):
-            msg='Favor de llenar todos los campos!'
+            msg='Favor de llenar todos los campos'
             return render_template('register.html',msg=msg)
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-            msg='correo no válido'
+            msg='Dirección de correo no válida'
             return render_template('register.html',msg=msg)
         elif len(password)<8:
              msg='La contraseña debe tener mínimo 8 caracteres'
