@@ -1,31 +1,6 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% extends "register.html" %}
 
-<!------ Include the above in your HEAD tag ---------->
-<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"-->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='register.css')}}">
-
-<head>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-</head>
-
-<nav class="nav-extended">
-    <div class="nav-content" method="POST">
-        <ul id="nav" class="navbar-nav tabs-transparent" style="background-color: #28a745">
-            <li class="nav-item"><a class="nav-link" href="/register/boxeador">Boxeador</a></li>
-            <li class="tab"><a class="nav-link" href="/register/entrenador">Entrenador</a></li>
-            <li class="tab"><a class="nav-link" href="/register/referee">Referee</a></li>
-            <li class="tab"><a class="nav-link" href="/register/dueno">Dueño de Gimnasio</a></li>
-        </ul>
-    </div>
-</nav>
-
+{% block content %}
 <body>
     <!-- Entrenador-->
     <div id="/register/entrenador" class="col s12" style="padding-top: 20px; padding-bottom: 20px">
@@ -33,10 +8,14 @@
             <form class="form-horizontal" role="form" method="POST">
                 <h2 style="color: white">Registrar Entrenador</h2>
                 <div class="form-group">
+                  <div class="msg">
+                      <font size="4" color="#d21616" topmargin="20px">{{ msg }}
+                  </div>
+
                     <label for="firstName" class="col-sm-3 control-label"
                         style="color: white; font-size: 18px">Nombre(s)</label>
                     <div class="col-sm-9">
-                        <input type="text" id="nombre-boxeador" placeholder="Nombre(s)" class="form-control"
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre(s)" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>
@@ -44,7 +23,7 @@
                     <label for="lastName" class="col-sm-3 control-label" style="color: white; font-size: 18px">Apellido
                         Paterno</label>
                     <div class="col-sm-9">
-                        <input type="text" id="apellido-pat-boxeador" placeholder="Apellido Paterno"
+                        <input type="text" id="apellidoPat" name="apellidoPat"  placeholder="Apellido Paterno"
                             style="color: white;" class="form-control" autofocus>
                     </div>
                 </div>
@@ -52,7 +31,7 @@
                     <label for="lastName" class="col-sm-3 control-label" style="color: white; font-size: 18px">Apellido
                         Materno</label>
                     <div class="col-sm-9">
-                        <input type="text" id="apellido-pat-boxeador" placeholder="Apellido Materno"
+                        <input type="text" id="apellidoMat" name="apellidoMat" placeholder="Apellido Materno"
                             style="color: white;" class="form-control" autofocus>
                     </div>
                 </div>
@@ -60,7 +39,7 @@
                     <label for="email" class="col-sm-3 control-label" style="color: white; font-size: 18px">Email*
                     </label>
                     <div class="col-sm-9">
-                        <input type="email" id="email" placeholder="Email" class="form-control" style="color: white;"
+                        <input type="email" id="email" name="email" class="form-control" style="color: white;"
                             name="email">
                     </div>
                 </div>
@@ -68,7 +47,7 @@
                     <label for="password" class="col-sm-3 control-label"
                         style="color: white; font-size: 18px">Password*</label>
                     <div class="col-sm-9">
-                        <input type="password" id="password" placeholder="Password" style="color: white;"
+                        <input type="password" id="password" name="password" placeholder="Password (8 caracteres minimo)" style="color: white;"
                             class="form-control">
                     </div>
                 </div>
@@ -76,7 +55,7 @@
                     <label for="password" class="col-sm-3 control-label" style="color: white; font-size: 18px">Confirmar
                         Password*</label>
                     <div class="col-sm-9">
-                        <input type="password" id="password" placeholder="Password" style="color: white;"
+                        <input type="password"  id="confirmPassword" name="confirmPassword" placeholder="Deben coincidir las contraseñas" style="color: white;"
                             class="form-control">
                     </div>
                 </div>
@@ -84,14 +63,14 @@
                     <label for="birthDate" class="col-sm-3 control-label" style="color: white; font-size: 18px">Fecha de
                         Nacimiento*</label>
                     <div class="col-sm-9">
-                        <input type="date" id="birthDate" style="color: white;" class="form-control">
+                        <input type="date" id="birthDate" name="birthDate" style="color: white;" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="phoneNumber" class="col-sm-3 control-label" style="color: white; font-size: 18px">Número
                         de casa* </label>
                     <div class="col-sm-9">
-                        <input type="phoneNumber" id="tel-casa" placeholder="Número de casa" style="color: white;"
+                        <input type="phoneNumber" id="telCasa" name="telCasa" placeholder="Número de casa" style="color: white;"
                             class="form-control">
                         <span class="help-block">Su número de teléfono no se mostrará en ningún lado.</span>
                     </div>
@@ -100,40 +79,33 @@
                     <label for="phoneNumber" class="col-sm-3 control-label" style="color: white; font-size: 18px">Número
                         celular</label>
                     <div class="col-sm-9">
-                        <input type="phoneNumber" id="tel-celular" placeholder="Número celular" style="color: white;"
+                        <input type="phoneNumber" id="celular" name="celular" placeholder="Número celular" style="color: white;"
                             class="form-control">
-                        <span class="help-block">Su número de teléfono no se mostrará en ningún lado.</span>
+                        <span class="help-block" >Su número de teléfono no se mostrará en ningún lado.</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Sexo* </label>
-                    <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="radio-inline">
-                                    <input type="radio" id="femaleRadio" value="Female">Femenino
-                                </label>
-                            </div>
-                            <div class="col-sm-4">
-                                <label class="radio-inline">
-                                    <input type="radio" id="maleRadio" value="Male">Masculino
-                                </label>
-                            </div>
-                        </div>
+                    <label class="control-label col-sm-3" style="color: white; font-size: 18px">Sexo* </label>
+                    <div class="col-sm-5">
+                        <select class="form-control selcls" id="sexo" name="sexo">
+                            <option>Masculino</option>
+                            <option>Femenino</option>
+                        </select>
+
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="birthDate" class="col-sm-3 control-label" style="color: white; font-size: 18px">Fecha de
                         Registro* </label>
                     <div class="col-sm-9">
-                        <input type="date" id="fecha-regis" class="form-control" style="color: white;">
+                        <input type="date" id="inicio" name="inicio" class="form-control" style="color: white;">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="lastName" class="col-sm-3 control-label" style="color: white; font-size: 18px">Calle*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="calle-boxeador" placeholder="Calle" class="form-control"
+                        <input type="text" id="calle" name="calle" placeholder="Calle" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>
@@ -141,7 +113,7 @@
                     <label for="lastName" class="col-sm-3 control-label" style="color: white; font-size: 18px">Número*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="calle-num-boxeador" placeholder="Calle" class="form-control"
+                        <input type="text" id="numeroCalle" name="numeroCalle" placeholder="Calle" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>
@@ -149,7 +121,7 @@
                     <label for="lastName" class="col-sm-3 control-label" style="color: white; font-size: 18px">Colonia*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="colonia-boxeador" placeholder="Colonia" class="form-control"
+                        <input type="text" id="colonia" name="colonia" placeholder="Colonia" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>
@@ -157,7 +129,7 @@
                     <label for="lastName" class="col-sm-3 control-label" style="color: white; font-size: 18px">Municipio
                         y C.P* </label>
                     <div class="col-sm-9">
-                        <input type="text" id="municipio-boxeador" placeholder="Municipio y C.P" style="color: white;"
+                        <input type="text" id="municipio" name="municipio" placeholder="Municipio y C.P" style="color: white;"
                             class="form-control" autofocus>
                     </div>
                 </div>
@@ -165,7 +137,7 @@
                     <label for="lastName" class="col-sm-3 control-label" style="color: white; font-size: 18px">Estado*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="estado-boxeador" placeholder="Estado" class="form-control"
+                        <input type="text" id="estado" name="estado" placeholder="Estado" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>
@@ -180,19 +152,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3" style="color: white; font-size: 18px">Boxeador* </label>
-                    <div class="col-sm-5">
-                        <select class="form-control selcls" id="gender1" name="boxeador">
-                            <option>Boxeador1</option>
-                            <option>Boxeador3</option>
-                            <option>Boxeador2</option>
-                            <option>Boxeador5</option>
-                            <option>Boxeador9</option>
-                            <option>Boxeador8</option>
-                            <option>Boxeador7</option>
-                            <option>Boxeador6</option>
-                        </select>
-
+                    <label for="weight" class="col-sm-3 control-label" style="color: white; font-size: 18px">Num. de
+                        Peleas* </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="peleas" name="peleas" placeholder="Num. de Peleas" style="color: white"
+                            class="form-control">
                     </div>
                 </div>
                 <!-- /.form-group -->
@@ -204,6 +168,8 @@
                 <button type="submit" class="btn btn-primary btn-block"
                     style="background-color: #028d19">Registrar</button>
                 <!-- /.form-group -->
+              </form> <!-- /form -->
         </div>
     </div>
 </body>
+{% endblock %}

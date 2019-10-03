@@ -30,8 +30,8 @@
     <!-- Referee-->
     <div id="/register/referee" class="col s12" style="padding-top: 20px; padding-bottom: 20px">
         <div class="container">
-            <form class="form-horizontal" role="form">
-                <h2 style="color: white">Registrar Entrenador</h2>
+            <form class="form-horizontal" role="form" method="POST">
+                <h2 style="color: white">Registrar Referee</h2>
                 <div class="form-group">
                     <label for="firstName" class="col-sm-3 control-label"
                         style="color: white; font-size: 18px">Nombre(s)</label>
@@ -106,20 +106,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Sexo* </label>
-                    <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="radio-inline">
-                                    <input type="radio" id="femaleRadio" value="Female">Femenino
-                                </label>
-                            </div>
-                            <div class="col-sm-4">
-                                <label class="radio-inline">
-                                    <input type="radio" id="maleRadio" value="Male">Masculino
-                                </label>
-                            </div>
-                        </div>
+                    <label class="control-label col-sm-3" style="color: white; font-size: 18px">Sexo* </label>
+                    <div class="col-sm-5">
+                        <select class="form-control selcls" id="gender1" name="sexo">
+                            <option>Masculino</option>
+                            <option>Femenino</option>
+                        </select>
+
                     </div>
                 </div>
                 <div class="form-group">

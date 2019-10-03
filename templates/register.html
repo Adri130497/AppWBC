@@ -19,7 +19,7 @@
 <nav class="nav-extended">
     <div class="nav-content" method="POST">
         <ul id="nav" class="navbar-nav tabs-transparent" style="background-color: #28a745">
-            <li class="nav-item"><a class="nav-link" href="/register/boxeador">Boxeador</a></li>
+            <li class="tab"><a class="nav-link" href="/register/boxeador">Boxeador</a></li>
             <li class="tab"><a class="nav-link" href="/register/entrenador">Entrenador</a></li>
             <li class="tab"><a class="nav-link" href="/register/referee">Referee</a></li>
             <li class="tab"><a class="nav-link" href="/register/dueno">Dueño de Gimnasio</a></li>
@@ -28,5 +28,7 @@
 </nav>
 
 <body>
-    
+  {% block content %}
+    {% endblock %}
+
 </body>
