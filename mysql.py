@@ -2,7 +2,6 @@ from flask import Flask, request,render_template, url_for, flash, redirect
 from flaskext.mysql import MySQL
 from flask_mysqldb import MySQL
 import re
-from selenium.webdriver.support.ui import Select
 
 app = Flask(__name__)
 
@@ -20,7 +19,7 @@ def boxeador():
         cursor=mysql.connection.cursor()
 
         if request.method == 'GET':
-            return render_template('register.html',title='Registro')
+            return render_template('register_boxer.html',title='Registro')
             flagBox=request.form.get('flagB')
 
             cursor.execute("SELECT * from usuarios where email='" + email+ "'")
@@ -97,6 +96,18 @@ def boxeador():
                     mysql.connection.commit()
                     cursor.close()
                     return redirect(url_for('home'))
+
+@app.route('/register/entrenador')
+def entrenador():
+    return render_template('register_trainer.html',title='Registro')
+
+@app.route('/register/referee')
+def referee():
+    return render_template('register_referee.html',title='Registro')
+
+@app.route('/register/dueno')
+def dueno():
+    return render_template('register_owner.html',title='Registro')
 
 @app.route('/login')
 def myform():
