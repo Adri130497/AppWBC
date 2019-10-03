@@ -1,31 +1,5 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!------ Include the above in your HEAD tag ---------->
-<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"-->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='register.css')}}">
-
-<head>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-</head>
-
-<nav class="nav-extended">
-    <div class="nav-content" method="POST">
-        <ul id="nav" class="navbar-nav tabs-transparent" style="background-color: #28a745">
-            <li class="nav-item"><a class="nav-link" href="/register/boxeador">Boxeador</a></li>
-            <li class="tab"><a class="nav-link" href="/register/entrenador">Entrenador</a></li>
-            <li class="tab"><a class="nav-link" href="/register/referee">Referee</a></li>
-            <li class="tab"><a class="nav-link" href="/register/dueno">Dueño de Gimnasio</a></li>
-        </ul>
-    </div>
-</nav>
-
+{% extends "register.html" %}
+{% block content %}
 <body>
     <!-- Referee-->
     <div id="/register/referee" class="col s12" style="padding-top: 20px; padding-bottom: 20px">
@@ -112,7 +86,33 @@
                             <option>Masculino</option>
                             <option>Femenino</option>
                         </select>
-
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" style="color: white; font-size: 18px">Estado Civil*</label>
+                    <div class="col-sm-5">
+                        <select class="form-control selcls" id="gender1" name="edoCivil">
+                            <option>Soltero</option>
+                            <option>Casado</option>
+                            <option>Divorciado</option>
+                            <option>Viudo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ocupacion" class="col-sm-3 control-label" style="color: white; font-size: 18px">Ocupación*
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="ocupacion-juez" placeholder="Ocupacion" class="form-control"
+                            style="color: white;" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="escolaridad" class="col-sm-3 control-label" style="color: white; font-size: 18px">Escolaridad*
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="escolaridad-juez" placeholder="Escolaridad" class="form-control"
+                            style="color: white;" autofocus>
                     </div>
                 </div>
                 <div class="form-group">
@@ -173,59 +173,50 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3" style="color: white; font-size: 18px">Guardia* </label>
+                    <label class="control-label col-sm-3" style="color: white; font-size: 18px">Tipo* </label>
                     <div class="col-sm-5">
-                        <select class="form-control selcls" id="gender1" name="guardia">
-                            <option>Derecha</option>
-                            <option>Izquierda</option>
+                        <select class="form-control selcls" id="gender1" name="tipoReferee">
+                            <option>Referee</option>
+                            <option>Juez</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3" style="color: white; font-size: 18px">Tipo de Sangre* </label>
-                    <div class="col-sm-5">
-                        <select class="form-control selcls" id="gender1" name="tipoSangre">
-                            <option>O-</option>
-                            <option>O+</option>
-                            <option>A-</option>
-                            <option>A+</option>
-                            <option>B-</option>
-                            <option>B+</option>
-                            <option>AB-</option>
-                            <option>AB+</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="Height" class="col-sm-3 control-label" style="color: white; font-size: 18px">Estatura*
+                    <label for="idLicencia" class="col-sm-3 control-label" style="color: white; font-size: 18px">ID Licencia*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="estatura" name="estatura" placeholder="Ingrese su altura en cm."
-                            style="color: white" class="form-control">
+                        <input type="text" id="licencia-juez" placeholder="ID Licencia" class="form-control"
+                            style="color: white;" autofocus>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="weight" class="col-sm-3 control-label" style="color: white; font-size: 18px">Peso*
+                    <label for="expedLicencia" class="col-sm-3 control-label" style="color: white; font-size: 18px">Persona que expidió licencia*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="peso" name="peso" placeholder="Ingrese su peso en Kg."
-                            style="color: white" class="form-control">
+                        <input type="text" id="licencia-exped-juez" placeholder="Persona que expidió licencia" class="form-control"
+                            style="color: white;" autofocus>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="weight" class="col-sm-3 control-label"
-                        style="color: white; font-size: 18px">Alias</label>
+                    <label for="notasLicencia" class="col-sm-3 control-label" style="color: white; font-size: 18px">Notas sobre licencia*
+                    </label>
                     <div class="col-sm-9">
-                        <input type="text" id="alias" name="alias" placeholder="Alias" style="color: white"
-                            class="form-control">
+                        <input type="text" id="licencia-notas-juez" placeholder="Notas sobre licencia" class="form-control"
+                            style="color: white;" autofocus>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="weight" class="col-sm-3 control-label" style="color: white; font-size: 18px">Num. de
-                        Peleas* </label>
+                    <label for="birthDate" class="col-sm-3 control-label" style="color: white; font-size: 18px">Fecha de Expedición*</label>
                     <div class="col-sm-9">
-                        <input type="text" id="peleas" name="peleas" placeholder="Num. de Peleas" style="color: white"
-                            class="form-control">
+                        <input type="date" id="expeditionDate" style="color: white;" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="experiencia" class="col-sm-3 control-label" style="color: white; font-size: 18px">Años Experiencia*
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="text" id="experiencia-juez" placeholder="Años Experiencia" class="form-control"
+                            style="color: white;" autofocus>
                     </div>
                 </div>
                 <!-- /.form-group -->
@@ -241,3 +232,4 @@
         </div>
     </div>
 </body>
+{% endblock %}
