@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'admin'
-app.config['MYSQL_DB'] = 'wbc_final'
+app.config['MYSQL_DB'] = 'wbc_final2'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['SECRET_KEY'] = '6023611b18e90c93803a8dd783540183'
 
@@ -188,7 +188,7 @@ def entrenador():
         "municipio,estado)"\
         "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
 
-        agregar_entrenador=("INSERT INTO entrenado (id_entrenador,no_peleas) VALUES (%s,%s)")
+        agregar_entrenador=("INSERT INTO entrenado (id_entrenador,no_peleas,bandera_entrenador_manager) VALUES (%s,%s,%s)")
 
         userDetails= request.form
         nombre=userDetails['nombre']
@@ -208,6 +208,7 @@ def entrenador():
         municipio=userDetails['municipio']
         estado=userDetails['estado']
         numPeleas=userDetails['peleas']
+        tipoEntrenador=userDetails['tipoEntrenador']
 
         user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,estado)
 
@@ -232,7 +233,7 @@ def entrenador():
                 #Entrenador
                 id_entrenador=cursor.lastrowid
                 print(id_entrenador)
-                entrenador_data=(id_entrenador,numPeleas)
+                entrenador_data=(id_entrenador,numPeleas,tipoEntrenador)
                 cursor.execute(agregar_entrenador,entrenador_data)
                 mysql.connection.commit()
                 cursor.close()
