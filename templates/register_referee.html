@@ -6,11 +6,14 @@
         <div class="container">
             <form class="form-horizontal" role="form" method="POST">
                 <h2 style="color: white">Registrar Referee</h2>
+                <div class="msg">
+                    <font size="4" color="#d21616" topmargin="20px">{{ msg }}
+                </div>
                 <div class="form-group">
                     <label for="firstName" class="col-sm-3 control-label"
                         style="color: white; font-size: 18px">Nombre(s)</label>
                     <div class="col-sm-9">
-                        <input type="text" id="nombre-boxeador" placeholder="Nombre(s)" class="form-control"
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre(s)" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>
@@ -18,7 +21,7 @@
                     <label for="lastName" class="col-sm-3 control-label" style="color: white; font-size: 18px">Apellido
                         Paterno</label>
                     <div class="col-sm-9">
-                        <input type="text" id="apellido-pat-boxeador" placeholder="Apellido Paterno"
+                        <input type="text" id="apellidoPat" name="apellidoPat" placeholder="Apellido Paterno"
                             style="color: white;" class="form-control" autofocus>
                     </div>
                 </div>
@@ -26,7 +29,7 @@
                     <label for="lastName" class="col-sm-3 control-label" style="color: white; font-size: 18px">Apellido
                         Materno</label>
                     <div class="col-sm-9">
-                        <input type="text" id="apellido-pat-boxeador" placeholder="Apellido Materno"
+                        <input type="text" id="apellidoMat" name="apellidoMat" placeholder="Apellido Materno"
                             style="color: white;" class="form-control" autofocus>
                     </div>
                 </div>
@@ -34,7 +37,7 @@
                     <label for="email" class="col-sm-3 control-label" style="color: white; font-size: 18px">Email*
                     </label>
                     <div class="col-sm-9">
-                        <input type="email" id="email" placeholder="Email" class="form-control" style="color: white;"
+                        <input type="email" id="email" name="email" placeholder="Email" class="form-control" style="color: white;"
                             name="email">
                     </div>
                 </div>
@@ -42,7 +45,7 @@
                     <label for="password" class="col-sm-3 control-label"
                         style="color: white; font-size: 18px">Password*</label>
                     <div class="col-sm-9">
-                        <input type="password" id="password" placeholder="Password" style="color: white;"
+                        <input type="password" id="password" name="password" placeholder="Password" style="color: white;"
                             class="form-control">
                     </div>
                 </div>
@@ -50,7 +53,7 @@
                     <label for="password" class="col-sm-3 control-label" style="color: white; font-size: 18px">Confirmar
                         Password*</label>
                     <div class="col-sm-9">
-                        <input type="password" id="password" placeholder="Password" style="color: white;"
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Password" style="color: white;"
                             class="form-control">
                     </div>
                 </div>
@@ -58,15 +61,15 @@
                     <label for="birthDate" class="col-sm-3 control-label" style="color: white; font-size: 18px">Fecha de
                         Nacimiento*</label>
                     <div class="col-sm-9">
-                        <input type="date" id="birthDate" style="color: white;" class="form-control">
+                        <input type="date" id="birthDate" name="birthDate" style="color: white;" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="phoneNumber" class="col-sm-3 control-label" style="color: white; font-size: 18px">Número
+                    <label for="phoneNumber" class="col-sm-3 control-label" style="color: whitex; font-size: 18px">Número
                         de casa* </label>
                     <div class="col-sm-9">
-                        <input type="phoneNumber" id="tel-casa" placeholder="Número de casa" style="color: white;"
-                            class="form-control">
+                        <input type="phoneNumber" id="telCasa" name="telCasa" placeholder="Número de casa"
+                            style="color: black" class="form-control">
                         <span class="help-block">Su número de teléfono no se mostrará en ningún lado.</span>
                     </div>
                 </div>
@@ -74,15 +77,15 @@
                     <label for="phoneNumber" class="col-sm-3 control-label" style="color: white; font-size: 18px">Número
                         celular</label>
                     <div class="col-sm-9">
-                        <input type="phoneNumber" id="tel-celular" placeholder="Número celular" style="color: white;"
-                            class="form-control">
+                        <input type="phoneNumber" id="celular" name="celular" placeholder="Número celular"
+                            style="color: black" class="form-control">
                         <span class="help-block">Su número de teléfono no se mostrará en ningún lado.</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3" style="color: white; font-size: 18px">Sexo* </label>
                     <div class="col-sm-5">
-                        <select class="form-control selcls" id="gender1" name="sexo">
+                        <select class="form-control selcls" id="sexo" name="sexo">
                             <option>Masculino</option>
                             <option>Femenino</option>
                         </select>
@@ -91,7 +94,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3" style="color: white; font-size: 18px">Estado Civil*</label>
                     <div class="col-sm-5">
-                        <select class="form-control selcls" id="gender1" name="edoCivil">
+                        <select class="form-control selcls" id="edoCivil" name="edoCivil">
                             <option>Soltero</option>
                             <option>Casado</option>
                             <option>Divorciado</option>
@@ -103,7 +106,7 @@
                     <label for="ocupacion" class="col-sm-3 control-label" style="color: white; font-size: 18px">Ocupación*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="ocupacion-juez" placeholder="Ocupacion" class="form-control"
+                        <input type="text" id="ocupacion" name="ocupacion" placeholder="Ocupacion" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>
@@ -111,7 +114,7 @@
                     <label for="escolaridad" class="col-sm-3 control-label" style="color: white; font-size: 18px">Escolaridad*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="escolaridad-juez" placeholder="Escolaridad" class="form-control"
+                        <input type="text" id="escolaridad" name="escolaridad" placeholder="Escolaridad" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>
@@ -119,14 +122,14 @@
                     <label for="birthDate" class="col-sm-3 control-label" style="color: white; font-size: 18px">Fecha de
                         Registro* </label>
                     <div class="col-sm-9">
-                        <input type="date" id="fecha-regis" class="form-control" style="color: white;">
+                        <input type="date" id="inicio" name="inicio" class="form-control" style="color: white;">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="lastName" class="col-sm-3 control-label" style="color: white; font-size: 18px">Calle*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="calle-boxeador" placeholder="Calle" class="form-control"
+                        <input type="text" id="calle" name="calle" placeholder="Calle" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>
@@ -134,7 +137,7 @@
                     <label for="lastName" class="col-sm-3 control-label" style="color: white; font-size: 18px">Número*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="calle-num-boxeador" placeholder="Calle" class="form-control"
+                        <input type="text" id="numeroCalle" name="numeroCalle" placeholder="Calle" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>
@@ -142,7 +145,7 @@
                     <label for="lastName" class="col-sm-3 control-label" style="color: white; font-size: 18px">Colonia*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="colonia-boxeador" placeholder="Colonia" class="form-control"
+                        <input type="text" id="colonia" name="colonia" placeholder="Colonia" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>
@@ -150,7 +153,7 @@
                     <label for="lastName" class="col-sm-3 control-label" style="color: white; font-size: 18px">Municipio
                         y C.P* </label>
                     <div class="col-sm-9">
-                        <input type="text" id="municipio-boxeador" placeholder="Municipio y C.P" style="color: white;"
+                        <input type="text" id="municipio" name="municipio" placeholder="Municipio y C.P" style="color: white;"
                             class="form-control" autofocus>
                     </div>
                 </div>
@@ -158,7 +161,7 @@
                     <label for="lastName" class="col-sm-3 control-label" style="color: white; font-size: 18px">Estado*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="estado-boxeador" placeholder="Estado" class="form-control"
+                        <input type="text" id="estado" name="estado" placeholder="Estado" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>
@@ -175,7 +178,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3" style="color: white; font-size: 18px">Tipo* </label>
                     <div class="col-sm-5">
-                        <select class="form-control selcls" id="gender1" name="tipoReferee">
+                        <select class="form-control selcls" id="tipoReferee" name="tipoReferee">
                             <option>Referee</option>
                             <option>Juez</option>
                         </select>
@@ -185,7 +188,7 @@
                     <label for="idLicencia" class="col-sm-3 control-label" style="color: white; font-size: 18px">ID Licencia*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="licencia-juez" placeholder="ID Licencia" class="form-control"
+                        <input type="text" id="licencia" name="licencia" placeholder="ID Licencia" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>
@@ -193,7 +196,7 @@
                     <label for="expedLicencia" class="col-sm-3 control-label" style="color: white; font-size: 18px">Persona que expidió licencia*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="licencia-exped-juez" placeholder="Persona que expidió licencia" class="form-control"
+                        <input type="text" id="expedLicencia" name="expedLicencia" placeholder="Persona que expidió licencia" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>
@@ -201,21 +204,21 @@
                     <label for="notasLicencia" class="col-sm-3 control-label" style="color: white; font-size: 18px">Notas sobre licencia*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="licencia-notas-juez" placeholder="Notas sobre licencia" class="form-control"
+                        <input type="text" id="notasLicencia" name="notasLicencia" placeholder="Notas sobre licencia" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="birthDate" class="col-sm-3 control-label" style="color: white; font-size: 18px">Fecha de Expedición*</label>
                     <div class="col-sm-9">
-                        <input type="date" id="expeditionDate" style="color: white;" class="form-control">
+                        <input type="date" id="expeditionDate" name="expeditionDate" style="color: white;" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="experiencia" class="col-sm-3 control-label" style="color: white; font-size: 18px">Años Experiencia*
                     </label>
                     <div class="col-sm-9">
-                        <input type="text" id="experiencia-juez" placeholder="Años Experiencia" class="form-control"
+                        <input type="text" id="experiencia" name="experiencia" placeholder="Años Experiencia" class="form-control"
                             style="color: white;" autofocus>
                     </div>
                 </div>

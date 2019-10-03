@@ -8,6 +8,9 @@
         <div class="container">
             <form class="form-horizontal" role="form">
                 <h2 style="color: white">Registrar Dueño</h2>
+                <div class="msg">
+                    <font size="4" color="#d21616" topmargin="20px">{{ msg }}
+                </div>
                 <div class="form-group">
                     <label for="firstName" class="col-sm-3 control-label"
                         style="color: white; font-size: 18px">Nombre(s)</label>
@@ -67,8 +70,8 @@
                     <label for="phoneNumber" class="col-sm-3 control-label" style="color: white; font-size: 18px">Número
                         de casa* </label>
                     <div class="col-sm-9">
-                        <input type="phoneNumber" id="telCasa" name="telCasa" placeholder="Número de casa" style="color: white;"
-                            class="form-control">
+                        <input type="phoneNumber" id="telCasa" name="telCasa" placeholder="Número de casa"
+                            style="color: white" class="form-control">
                         <span class="help-block">Su número de teléfono no se mostrará en ningún lado.</span>
                     </div>
                 </div>
@@ -76,26 +79,18 @@
                     <label for="phoneNumber" class="col-sm-3 control-label" style="color: white; font-size: 18px">Número
                         celular</label>
                     <div class="col-sm-9">
-                        <input type="phoneNumber" id="telCelular" name="telCelular" placeholder="Número celular" style="color: white;"
-                            class="form-control">
+                        <input type="phoneNumber" id="celular" name="celular" placeholder="Número celular"
+                            style="color: white" class="form-control">
                         <span class="help-block">Su número de teléfono no se mostrará en ningún lado.</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Sexo* </label>
-                    <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="radio-inline">
-                                    <input type="radio" id="femaleRadio" name="femaleRadio" value="Female">Femenino
-                                </label>
-                            </div>
-                            <div class="col-sm-4">
-                                <label class="radio-inline">
-                                    <input type="radio" id="maleRadio" name="femaleRadio" value="Male">Masculino
-                                </label>
-                            </div>
-                        </div>
+                    <label class="control-label col-sm-3" style="color: white; font-size: 18px">Sexo* </label>
+                    <div class="col-sm-5">
+                        <select class="form-control selcls" id="sexo" name="sexo">
+                            <option>Masculino</option>
+                            <option>Femenino</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
