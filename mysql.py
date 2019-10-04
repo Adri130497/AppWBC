@@ -2,6 +2,7 @@ from flask import Flask, request,render_template, url_for, flash, redirect
 from flaskext.mysql import MySQL
 from flask_mysqldb import MySQL
 import re
+import sqlalchemy
 
 app = Flask(__name__)
 
@@ -21,14 +22,6 @@ def boxeador():
 
         if request.method == 'GET':
             return render_template('register_boxer.html', title='Registro')
-
-            cursor.execute("SELECT * from usuarios where email='" + email+ "'")
-            data=cursor.fetchone()
-            if data is None:
-                pass
-            else:
-                msg='Ya existe el usuario!'
-                return render_template('register.html',msg=msg)
 
         else:
             #USUARIOS
@@ -63,6 +56,15 @@ def boxeador():
             peso=userDetails['peso']
             alias=userDetails['alias']
             numPeleas=userDetails['peleas']
+
+            cursor.execute("SELECT * from usuarios where email='" + email+ "'")
+            data=cursor.fetchone()
+            if data is None:
+                pass
+            else:
+                msg='Ya existe el usuario!'
+                return render_template('register_referee.html',title='Registro',msg=msg)
+
 
             user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,estado)
 
@@ -173,14 +175,6 @@ def entrenador():
     if request.method == 'GET':
         return render_template('register_trainer.html',title='Registro')
 
-        cursor.execute("SELECT * from usuarios where email='" + email+ "'")
-        data=cursor.fetchone()
-        if data is None:
-            pass
-        else:
-            msg='Ya existe el usuario!'
-            return render_template('register_trainer.html',msg=msg)
-
     else:
         #USUARIOS
         agregar_usuario=("INSERT INTO usuarios (nombre,apellido_paterno,apellido_materno,email,"\
@@ -209,6 +203,14 @@ def entrenador():
         estado=userDetails['estado']
         numPeleas=userDetails['peleas']
         tipoEntrenador=userDetails['tipoEntrenador']
+
+        cursor.execute("SELECT * from usuarios where email='" + email+ "'")
+        data=cursor.fetchone()
+        if data is None:
+            pass
+        else:
+            msg='Ya existe el usuario!'
+            return render_template('register_referee.html',title='Registro',msg=msg)
 
         user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,estado)
 
@@ -248,13 +250,7 @@ def referee():
 
     if request.method == 'GET':
         return render_template('register_referee.html',title='Registro')
-        cursor.execute("SELECT * from usuarios where email='" + email+ "'")
-        data=cursor.fetchone()
-        if data is None:
-            pass
-        else:
-            msg='Ya existe el usuario!'
-            return render_template('register_referee.html',title='Registro')
+
 
     else:
         #USUARIOS
@@ -295,9 +291,17 @@ def referee():
         fechaExpiracion=userDetails['expeditionDate']
         añosExperiencia=userDetails['experiencia']
 
-        print(nacimiento)
+        cursor.execute("SELECT * from usuarios where email='" + email+ "'")
+        data=cursor.fetchone()
+        if data is None:
+            pass
+        else:
+            msg='Ya existe el usuario!'
+            return render_template('register_referee.html',title='Registro',msg=msg)
 
-        print(fechaExpiracion)
+
+
+
         user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,estado)
 
         if (not nombre or not apellidoMat or not apellidoPat or not email
@@ -306,16 +310,16 @@ def referee():
         or not municipio or not estado or not estadoCivil or not ocupacion or not escolaridad
         or not añosExperiencia):
             msg='Favor de llenar todos los campos!'
-            return render_template('register_referee.html',title='Registro')
+            return render_template('register_referee.html',title='Registro',msg=msg)
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
             msg='correo no válido'
-            return render_template('register_referee.html',title='Registro')
+            return render_template('register_referee.html',title='Registro',msg=msg)
         elif len(password)<8:
              msg='La contraseña debe tener mínimo 8 caracteres'
-             return render_template('register_referee.html',title='Registro')
+             return render_template('register_referee.html',title='Registro',msg=msg)
         elif password != confirmPassword:
             msg='Las contraseñas no coinciden'
-            return render_template('register_referee.html',title='Registro')
+            return render_template('register_referee.html',title='Registro',msg=msg)
         else:
 
                 cursor.execute(agregar_usuario,user_data)
@@ -336,13 +340,7 @@ def dueno():
 
     if request.method == 'GET':
         return render_template('register_owner.html',title='Registro')
-        cursor.execute("SELECT * from usuarios where email='" + email+ "'")
-        data=cursor.fetchone()
-        if data is None:
-            pass
-        else:
-            msg='Ya existe el usuario!'
-            return render_template('register_owner.html',title='Registro')
+
     else:
         #USUARIOS
         agregar_usuario=("INSERT INTO usuarios (nombre,apellido_paterno,apellido_materno,email,"\
@@ -381,6 +379,15 @@ def dueno():
         horario=userDetails['gymHorario']
         telefono=userDetails['gymTelefono']
         emailGym=userDetails['gymEmail']
+
+        cursor.execute("SELECT * from usuarios where email='" + email+ "'")
+        data=cursor.fetchone()
+        if data is None:
+            pass
+        else:
+            msg='Ya existe el usuario!'
+            return render_template('register_referee.html',title='Registro',msg=msg)
+
 
         user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,estado)
 
