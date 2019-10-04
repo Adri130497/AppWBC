@@ -290,10 +290,10 @@ def referee():
         ocupacion=userDetails['ocupacion']
         escolaridad=userDetails['escolaridad']
         idLicencia=userDetails['licencia']
-        personaLicencia=['expedLicencia']
-        notasSobreLicencia=['notasLicencia']
-        fechaExpiracion=['expeditionDate']
-        añosExperiencia=['experiencia']
+        personaLicencia=userDetails['expedLicencia']
+        notasSobreLicencia=userDetails['notasLicencia']
+        fechaExpiracion=userDetails['expeditionDate']
+        añosExperiencia=userDetails['experiencia']
 
         print(nacimiento)
 
@@ -329,9 +329,87 @@ def referee():
 
 
 #Regstro de Dueño
-@app.route('/register/dueno')
+@app.route('/register/dueno',methods=['GET','POST'])
 def dueno():
-    return render_template('register_owner.html',title='Registro')
+    msg=''
+    cursor=mysql.connection.cursor()
+
+    if request.method == 'GET':
+        return render_template('register_owner.html',title='Registro')
+        cursor.execute("SELECT * from usuarios where email='" + email+ "'")
+        data=cursor.fetchone()
+        if data is None:
+            pass
+        else:
+            msg='Ya existe el usuario!'
+            return render_template('register_owner.html',title='Registro')
+    else:
+        #USUARIOS
+        agregar_usuario=("INSERT INTO usuarios (nombre,apellido_paterno,apellido_materno,email,"\
+        "contrasena,fecha_nacimiento,telefono_casa,celular,sexo,calle,numero,colonia,fecha_registro,"\
+        "municipio,estado)"\
+        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
+
+        agregar_gym=("INSERT INTO gyms (id_propietario, nombre, direccion,"\
+        "ciudad, estado, alcaldia_municipio, cp, horario, telefono, email)"\
+        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
+
+        userDetails= request.form
+        nombre=userDetails['nombre']
+        apellidoPat=userDetails['apellidoPat']
+        apellidoMat=userDetails['apellidoMat']
+        email=userDetails['email']
+        password=userDetails['password']
+        confirmPassword=userDetails['confirmPassword']
+        nacimiento=userDetails['birthDate']
+        telCasa=userDetails['telCasa']
+        celular=userDetails['celular']
+        sexo=userDetails['sexo']
+        inicio=userDetails['inicio']
+        calle=userDetails['calle']
+        numeroCalle=userDetails['numeroCalle']
+        colonia=userDetails['colonia']
+        municipio=userDetails['municipio']
+        estado=userDetails['estado']
+
+        nombreGym=userDetails['gymNombre']
+        direccionGym=userDetails['gymDireccion']
+        ciudadGym=userDetails['gymCiudad']
+        estadoGym=userDetails['gymEstado']
+        municipioGym=userDetails['gymAlcaldia']
+        cpGym=userDetails['gymCP']
+        horario=userDetails['gymHorario']
+        telefono=userDetails['gymTelefono']
+        emailGym=userDetails['gymEmail']
+
+        user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,estado)
+
+        if (not nombre or not apellidoMat or not apellidoPat or not email
+        or not password or not confirmPassword or not nacimiento or not telCasa
+        or not sexo or not inicio or not calle or not numeroCalle or not colonia
+        or not municipio or not estado or not nombreGym or not direccionGym or not ciudadGym
+        or not estadoGym or not emailGym):
+            msg='Favor de llenar todos los campos!'
+            return render_template('register_owner.html',title='Registro')
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            msg='correo no válido'
+            return render_template('register_owner.html',title='Registro')
+        elif len(password)<8:
+             msg='La contraseña debe tener mínimo 8 caracteres'
+             return render_template('register_owner.html',title='Registro')
+        elif password != confirmPassword:
+            msg='Las contraseñas no coinciden'
+            return render_template('register_owner.html',title='Registro')
+        else:
+
+                cursor.execute(agregar_usuario,user_data)
+                #Entrenador
+                id_gym=cursor.lastrowid
+                gym_data=(id_gym,nombreGym,direccionGym,ciudadGym,estadoGym,municipioGym,cpGym,horario,telefono,emailGym)
+                cursor.execute(agregar_gym,gym_data)
+                mysql.connection.commit()
+                cursor.close()
+                return redirect(url_for('home'))
 
 
 
