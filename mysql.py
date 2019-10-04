@@ -241,9 +241,92 @@ def entrenador():
 
 
 #Registro de Referee=
-@app.route('/register/referee')
+@app.route('/register/referee',methods=['GET','POST'])
 def referee():
-    return render_template('register_referee.html',title='Registro')
+    msg=''
+    cursor=mysql.connection.cursor()
+
+    if request.method == 'GET':
+        return render_template('register_referee.html',title='Registro')
+        cursor.execute("SELECT * from usuarios where email='" + email+ "'")
+        data=cursor.fetchone()
+        if data is None:
+            pass
+        else:
+            msg='Ya existe el usuario!'
+            return render_template('register_referee.html',title='Registro')
+
+    else:
+        #USUARIOS
+        agregar_usuario=("INSERT INTO usuarios (nombre,apellido_paterno,apellido_materno,email,"\
+        "contrasena,fecha_nacimiento,telefono_casa,celular,sexo,calle,numero,colonia,fecha_registro,"\
+        "municipio,estado)"\
+        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
+
+        agregar_referi=("INSERT INTO referi_juez (id_referi_juez, bandera_referi_juez, estado_civil,"\
+        "ocupacion, escolaridad, id_licencia, quien_expide, notas_licencia, fecha_expiracion_licencia, anios_experiencia)"\
+        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
+
+        userDetails= request.form
+        nombre=userDetails['nombre']
+        apellidoPat=userDetails['apellidoPat']
+        apellidoMat=userDetails['apellidoMat']
+        email=userDetails['email']
+        password=userDetails['password']
+        confirmPassword=userDetails['confirmPassword']
+        nacimiento=userDetails['birthDate']
+        telCasa=userDetails['telCasa']
+        celular=userDetails['celular']
+        sexo=userDetails['sexo']
+        inicio=userDetails['inicio']
+        calle=userDetails['calle']
+        numeroCalle=userDetails['numeroCalle']
+        colonia=userDetails['colonia']
+        municipio=userDetails['municipio']
+        estado=userDetails['estado']
+
+        tipoReferee=userDetails['tipoReferee']
+        estadoCivil=userDetails['edoCivil']
+        ocupacion=userDetails['ocupacion']
+        escolaridad=userDetails['escolaridad']
+        idLicencia=userDetails['licencia']
+        personaLicencia=['expedLicencia']
+        notasSobreLicencia=['notasLicencia']
+        fechaExpiracion=['expeditionDate']
+        añosExperiencia=['experiencia']
+
+        print(nacimiento)
+
+        print(fechaExpiracion)
+        user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,estado)
+
+        if (not nombre or not apellidoMat or not apellidoPat or not email
+        or not password or not confirmPassword or not nacimiento or not telCasa
+        or not sexo or not inicio or not calle or not numeroCalle or not colonia
+        or not municipio or not estado or not estadoCivil or not ocupacion or not escolaridad
+        or not añosExperiencia):
+            msg='Favor de llenar todos los campos!'
+            return render_template('register_referee.html',title='Registro')
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            msg='correo no válido'
+            return render_template('register_referee.html',title='Registro')
+        elif len(password)<8:
+             msg='La contraseña debe tener mínimo 8 caracteres'
+             return render_template('register_referee.html',title='Registro')
+        elif password != confirmPassword:
+            msg='Las contraseñas no coinciden'
+            return render_template('register_referee.html',title='Registro')
+        else:
+
+                cursor.execute(agregar_usuario,user_data)
+                #Entrenador
+                id_referi=cursor.lastrowid
+                referi_data=(id_referi,tipoReferee,estadoCivil,ocupacion,escolaridad,idLicencia,personaLicencia,notasSobreLicencia,fechaExpiracion,añosExperiencia)
+                cursor.execute(agregar_referi,referi_data)
+                mysql.connection.commit()
+                cursor.close()
+                return redirect(url_for('home'))
+
 
 #Regstro de Dueño
 @app.route('/register/dueno')
