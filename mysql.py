@@ -20,7 +20,7 @@ def boxeador():
         cursor=mysql.connection.cursor()
 
         if request.method == 'GET':
-            return render_template('register_boxer.html',title='Registro')
+            return render_template('register_boxer.html', title='Registro')
 
             cursor.execute("SELECT * from usuarios where email='" + email+ "'")
             data=cursor.fetchone()
