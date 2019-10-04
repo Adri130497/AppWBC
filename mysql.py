@@ -447,7 +447,9 @@ def register():
     if request.method == 'GET':
         return render_template('register.html',title='Registro')
 
-
+@app.route('/',methods=['GET','POST'])
+def mainPage():
+        return redirect(url_for('login'))
 
 
 if __name__=="__main__":
