@@ -14,7 +14,7 @@ body{
 
 #checkbox{
     width: 100%;
-    text-align: center;
+
     margin-bottom: 1em;
     margin-top: 1em;
 }
@@ -40,4 +40,12 @@ select{
 img{
     max-width:100%;
     height:auto;
+}
+
+hr{
+	  border-top: 2px solid #009B49;
+}
+
+h5{
+	text-align:center;
 }
