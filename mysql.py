@@ -49,7 +49,7 @@ def boxeador():
             numeroCalle=userDetails['numeroCalle']
             colonia=userDetails['colonia']
             municipio=userDetails['municipio']
-            codigoPostal=userDetails['CP']    
+            codigoPostal=userDetails['CP']
             estado=userDetails['estado']
             tipoSangre=userDetails['tipoSangre']
             guardia=userDetails['guardia']
@@ -201,7 +201,7 @@ def entrenador():
         numeroCalle=userDetails['numeroCalle']
         colonia=userDetails['colonia']
         municipio=userDetails['municipio']
-        codigoPostal=userDetails['CP']   
+        codigoPostal=userDetails['CP']
         estado=userDetails['estado']
         numPeleas=userDetails['peleas']
         tipoEntrenador=userDetails['tipoEntrenador']
@@ -281,7 +281,7 @@ def referee():
         numeroCalle=userDetails['numeroCalle']
         colonia=userDetails['colonia']
         municipio=userDetails['municipio']
-        codigoPostal=userDetails['CP']   
+        codigoPostal=userDetails['CP']
         estado=userDetails['estado']
 
         tipoReferee=userDetails['tipoReferee']
@@ -371,7 +371,7 @@ def dueno():
         numeroCalle=userDetails['numeroCalle']
         colonia=userDetails['colonia']
         municipio=userDetails['municipio']
-        codigoPostal=userDetails['CP']   
+        codigoPostal=userDetails['CP']
         estado=userDetails['estado']
 
         nombreGym=userDetails['gymNombre']
@@ -426,7 +426,12 @@ def dueno():
 
 @app.route("/home")
 def home():
-    return render_template('home.html')
+    return render_template('home.html',title='Home')
+
+@app.route("/home/RegistroPeleas")
+def RegistroPeleas():
+    return render_template('registro_Peleas.html',title='Home')
+
 
 
 @app.route('/login',methods=['GET','POST'])

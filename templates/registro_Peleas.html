@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='pelea.css')}}">
+  </head>
+  <body>
+    <div class="container">
+      <div class="col text-center">
+        <img id="logo" src="{{url_for('static', filename='logo-large.png')}}" alt="logo wbc">
+      </div>
+
+
+      <form>
+        <div id="checkbox" class="form-check">
+          <!--id:"bandera_boxeador1" hace match con el campo bandera_boxeador1-->
+          <input type="checkbox" class="form-check-input" id="bandera_boxeador1" onclick="checkfunction()">
+          <label class="form-check-label" for="exampleCheck1">¿Boxeador 1 registrado?</label>
+        </div>
+        <!--informacion mostrada si el checkbox se marca-->
+        <div id="boxeador1_registrado" style="display: none" class="form-group">
+          <label for="exampleFormControlInput1">ID Boxeador 1</label>
+          <!--se ingresa el correo, se busca el id asociado a ese correo y si este id tiene un registro de boxeador, se guarda en bd
+          el id en el campo id_boxeador1-->
+          <input type="email" class="form-control" id="id_boxeador1" placeholder="Busca al boxeador por su correo electronico...">
+          <div class="col text-center">
+            <button id="buscar" type="button" class="btn btn-primary mb-2">Buscar</button>
+          </div>
+        </div>
+        <!--informacion si el boxeador no esta registrado-->
+        <div  id="boxeador1_noregistrado" class="form-group">
+          <label for="exampleFormControlInput1">Nombre Boxeador 1</label>
+          <!--id:"nombre_boxeador1" hace match con el campo nombre_boxeador1-->
+          <input type="text" class="form-control" id="nombre_boxeador1" placeholder="Ingresa el nombre del boxeador 1...">
+        </div>
+        <div  id="boxeador1_noregistrado" class="form-group">
+          <!--id:"correo_boxeador1" hace match con el campo correo_boxeador1-->
+          <label for="exampleFormControlInput1">Correo Boxeador 1</label>
+          <input type="email" class="form-control" id="correo_boxeador1" placeholder="Ingresa el correo del boxeador 1...">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Peso Boxeador 1</label>
+            <!--id:"peso_boxeador_1" hace match con el campo peso_boxeador1-->
+          <input type="text" class="form-control" id="peso_boxeador_1" placeholder="Ingresa el peso del boxeador 1...">
+        </div>
+
+
+
+        <div id="checkbox" class="form-check">
+            <!--id:"bandera_boxeador2" hace match con el campo bandera_boxeador2-->
+          <input type="checkbox" class="form-check-input" id="bandera_boxeador2" onclick="checkfunction2()">
+          <label class="form-check-label" for="exampleCheck1">¿Boxeador 2 registrado?</label>
+        </div>
+          <!--informacion mostrada si el checkbox se marca-->
+        <div id="boxeador2_registrado" style="display: none" class="form-group">
+          <label for="exampleFormControlInput1">ID Boxeador 2</label>
+          <!--se ingresa el correo, se busca el id asociado a ese correo y si este id tiene un registro de boxeador, se guarda en bd
+          el id en el campo id_boxeador2-->
+          <input type="email" class="form-control" id="id_boxeador2" placeholder="Busca al boxeador por su correo electronico...">
+          <div class="col text-center">
+            <button id="buscar" type="button" class="btn btn-primary mb-2">Buscar</button>
+          </div>
+        </div>
+                <!--informacion si el boxeador 2 no esta registrado-->
+        <div  id="boxeador2_noregistrado" class="form-group">
+          <label for="exampleFormControlInput1">Nombre Boxeador 2</label>
+                    <!--id:"nombre_boxeador2" hace match con el campo nombre_boxeador2-->
+          <input type="text" class="form-control" id="nombre_boxeador2" placeholder="Ingresa el nombre del boxeador 1...">
+        </div>
+        <div  id="boxeador2_noregistrado" class="form-group">
+          <label for="exampleFormControlInput1">Correo Boxeador 2</label>
+                    <!--id:"correo_boxeador2" hace match con el campo correo_boxeador2-->
+          <input type="email" class="form-control" id="correo_boxeador2" placeholder="Ingresa el correo del boxeador 2...">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Peso Boxeador 2</label>
+            <!--id:"peso_boxeador_2" hace match con el campo peso_boxeador2-->
+            <input type="text" class="form-control" id="peso_boxeador_2" placeholder="Ingresa el peso del boxeador 1...">
+        </div>
+
+          <!--id:"division" hace match con el campo division-->
+        <select id="division" class="form-control">
+          <option>Selecciona division para la pelea</option>
+          <option>Division 1</option>
+          <option>Division 2</option>
+        </select>
+
+          <!--id:"ganador" hace match con el campo ganador-->
+        <select id="ganador" class="form-control">
+          <option>Selecciona al ganador</option>
+          <option>Boxeador 1</option>
+          <option>Boxeador 2</option>
+        </select>
+
+
+            <!--id:"resultado_pelea" hace match con el campo resultado_pelea-->
+        <select id="resultado_pelea" class="form-control">
+          <option>Selecciona el tipo de victoria</option>
+          <option>Victoria 1</option>
+          <option>Victoria 2</option>
+        </select>
+
+
+
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Numero de rounds</label>
+            <!--id:"rounds" hace match con el campo rounds-->
+          <input type="number" class="form-control" id="rounds" placeholder="Numero de rounds...">
+        </div>
+
+
+
+        <div id="checkbox" class="form-check">
+            <!--id:"bandera_referi" hace match con el campo bandera_referi-->
+          <input type="checkbox" class="form-check-input" id="bandera_referi" onclick="checkfunctionReferi()">
+          <label class="form-check-label" for="exampleCheck1">¿Referi registrado?</label>
+        </div>
+          <!--info mostrada si el checkbox se marca-->
+        <div id="referi_registrado" style="display: none" class="form-group">
+          <label for="exampleFormControlInput1">ID Referi</label>
+            <!--id:"id_referi" hace match con el campo id_referi-->
+          <input type="email" class="form-control" id="id_referi" placeholder="Busca al referi por su correo electronico...">
+          <div class="col text-center">
+            <button id="buscar" type="button" class="btn btn-primary mb-2">Buscar</button>
+          </div>
+        </div>
+        <div  id="referi_noregistrado" class="form-group">
+          <label for="exampleFormControlInput1">Nombre Referi</label>
+            <!--id:"nombre_referi" hace match con el campo nombre_referi-->
+          <input type="text" class="form-control" id="nombre_referi" placeholder="Ingresa el nombre del referi...">
+        </div>
+
+
+
+        <div id="checkbox" class="form-check">
+            <!--id:"bandera_gym" hace match con el campo bandera_gym-->
+          <input type="checkbox" class="form-check-input" id="bandera_gym" onclick="checkfunctionGym()">
+          <label class="form-check-label" for="exampleCheck1">¿Gym Registrado?</label>
+        </div>
+                    <!--info si el gym esta registrado-->
+        <div style="display: none" id="gym_registrado">
+          <div  class="form-group">
+            <label for="exampleFormControlInput1">ID Gym</label>
+              <!--id:"id_gym" hace match con el campo id_gym-->
+            <input type="email" class="form-control" id="id_gym" placeholder="Busca el gym por correo...">
+          </div>
+          <div class="col text-center">
+            <button id="buscar" type="button" class="btn btn-primary mb-2">Buscar</button>
+          </div>
+        </div>
+        <div id="gym_noregistrado">
+          <div  class="form-group">
+            <label for="exampleFormControlInput1">Nombre Gym</label>
+            <!--id:"nombre_gym" hace match con el campo nombre_gym-->
+            <input type="text" class="form-control" id="nombre_gym" placeholder="Ingresa el nombre del gym...">
+          </div>
+          <div  class="form-group">
+            <label for="exampleFormControlInput1">Estado Gym</label>
+                        <!--id:"estado_gym" hace match con el campo estado_gym-->
+            <input type="text" class="form-control" id="estado_gym" placeholder="Ingresa el estado del gym...">
+          </div>
+        </div>
+
+
+
+        <div id="notas" class="form-group">
+          <label for="exampleFormControlTextarea1">Notas de la pelea</label>
+          <!--id:"notas" hace match con el campo notas-->
+          <textarea class="form-control" id="notas" rows="3" maxlength="255" placeholder="Maximo 255 caracteres"></textarea>
+        </div>
+
+
+        <div class="col text-center">
+          <button id="registrar" type="submit" class="btn btn-primary mb-2">Registrar pelea</button>
+        </div>
+      </form>
+    </div>
+  </body>
+
+    <script>
+        function checkfunction(){
+          var checkbox = document.getElementById("bandera_boxeador1");
+          var id_boxeador1 = document.getElementById("boxeador1_registrado");
+          var nombre_boxeador1 = document.getElementById("boxeador1_noregistrado");
+
+          if(checkbox.checked == true){
+            id_boxeador1.style.display ="block";
+            nombre_boxeador1.style.display ="none";
+          }
+
+          else{
+            id_boxeador1.style.display ="none";
+            nombre_boxeador1.style.display="block";
+          }
+        }
+
+        function checkfunction2(){
+          var checkbox = document.getElementById("bandera_boxeador2");
+          var id_boxeador2 = document.getElementById("boxeador2_registrado");
+          var nombre_boxeador2 = document.getElementById("boxeador2_noregistrado");
+
+          if(checkbox.checked == true){
+            id_boxeador2.style.display ="block";
+            nombre_boxeador2.style.display ="none";
+          }
+
+          else{
+            id_boxeador2.style.display ="none";
+            nombre_boxeador2.style.display="block";
+          }
+        }
+
+        function checkfunctionReferi(){
+          var checkbox = document.getElementById("bandera_referi");
+          var id_referi = document.getElementById("referi_registrado");
+          var nombre_referi = document.getElementById("referi_noregistrado");
+
+          if(checkbox.checked == true){
+            id_referi.style.display ="block";
+            nombre_referi.style.display ="none";
+          }
+
+          else{
+            id_referi.style.display ="none";
+            nombre_referi.style.display="block";
+          }
+        }
+
+        function checkfunctionGym(){
+          var checkbox = document.getElementById("bandera_gym");
+          var id_gym = document.getElementById("gym_registrado");
+          var nombre_gym = document.getElementById("gym_noregistrado");
+
+          if(checkbox.checked == true){
+            id_gym.style.display ="block";
+            nombre_gym.style.display ="none";
+          }
+
+          else{
+            id_gym.style.display ="none";
+            nombre_gym.style.display="block";
+          }
+        }
+    </script>
+</html>

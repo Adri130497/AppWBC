@@ -1,0 +1,43 @@
+body{
+    background-color: black !important;
+}
+
+.container{
+    width: 50%;
+    min-height: 100vh;
+    background-color: white !important;
+    border-radius: 2em;
+    border-width: 1em;
+    border-color:#009B49;
+    border-style: solid;
+}
+
+#checkbox{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+#buscar{
+    text-align: center;
+    margin-top: 1em;
+}
+
+select{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#notas{
+    margin-bottom: 1em;
+}
+
+#registrar{
+    width: 100%;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+}
