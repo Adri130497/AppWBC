@@ -1,8 +1,7 @@
-from flask import Flask, request,render_template, url_for, flash, redirect
+from flask import Flask, request,render_template, url_for, flash, redirect, session, g
 from flaskext.mysql import MySQL
 from flask_mysqldb import MySQL
-import re
-import sqlalchemy
+from os import urandom
 
 app = Flask(__name__)
 
@@ -10,9 +9,13 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'admin'
 app.config['MYSQL_DB'] = 'wbc_final2'
 app.config['MYSQL_HOST'] = 'localhost'
-app.config['SECRET_KEY'] = '6023611b18e90c93803a8dd783540183'
+app.secret_key = urandom(24)
+
+
 
 mysql = MySQL(app)
+
+
 
 #Registro de Boxeador
 @app.route('/register/boxeador',methods=['GET','POST'])
@@ -426,7 +429,13 @@ def dueno():
 
 @app.route("/home")
 def home():
-    return render_template('home.html',title='Home')
+    if 'user' in session:
+        name = request.args.get('name')
+        id = request.args.get('id')
+        return render_template('home.html',title='Home',name=name,id=id)
+    else:
+        return redirect(url_for('login'))
+
 
 @app.route("/home/RegistroPeleas")
 def RegistroPeleas():
@@ -440,21 +449,35 @@ def login():
         return render_template('login.html',title='Login')
     else:
             msg='Usuario o Contraseña Incorrecta!'
+            name=''
+            id=''
             username=request.form['user']
+            name=username
             password=request.form['pass']
+            session['user'] = request.form['user']
+
             cursor=mysql.connect.cursor()
             cursor.execute("SELECT * from usuarios where email='" + username + "'and contrasena='" + password + "'")
             data=cursor.fetchone()
             if data is None:
                 return render_template('login.html',msg=msg)
             else:
-                return redirect(url_for('home'))
-
+                cursor.execute("SELECT nombre from usuarios where email='" + username + "'")
+                name=cursor.fetchone()
+                cursor.execute("SELECT id_usuario from usuarios where email='" + username + "'")
+                id=cursor.fetchone()
+                return redirect(url_for('home',name=name,id=id))
 
 @app.route('/register',methods=['GET','POST'])
 def register():
     if request.method == 'GET':
         return render_template('register.html',title='Registro')
+
+@app.route("/logout")
+def logout():
+    session.pop('user')
+    session.clear()
+    return redirect(url_for('index'))
 
 @app.route('/',methods=['GET','POST'])
 def mainPage():
