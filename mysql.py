@@ -2,6 +2,7 @@ from flask import Flask, request,render_template, url_for, flash, redirect, sess
 from flaskext.mysql import MySQL
 from flask_mysqldb import MySQL
 from os import urandom
+import re
 
 app = Flask(__name__)
 
@@ -30,8 +31,8 @@ def boxeador():
             #USUARIOS
             agregar_usuario=("INSERT INTO usuarios (nombre,apellido_paterno,apellido_materno,email,"\
             "contrasena,fecha_nacimiento,telefono_casa,celular,sexo,calle,numero,colonia,fecha_registro,"\
-            "municipio,codigoPostal,estado)"\
-            "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
+            "municipio,cp,estado)"\
+            "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
 
             agregar_boxeador=("INSERT INTO boxeadores (id_boxeador,tipo_sangre,guardia,estatura,peso,alias,num_peleas)"\
             "VALUES (%s,%s,%s,%s,%s,%s,%s)")
@@ -52,7 +53,7 @@ def boxeador():
             numeroCalle=userDetails['numeroCalle']
             colonia=userDetails['colonia']
             municipio=userDetails['municipio']
-            codigoPostal=userDetails['CP']
+            cp=userDetails['CP']
             estado=userDetails['estado']
             tipoSangre=userDetails['tipoSangre']
             guardia=userDetails['guardia']
@@ -70,7 +71,7 @@ def boxeador():
                 return render_template('register_referee.html',title='Registro',msg=msg)
 
 
-            user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,codigoPostal,estado)
+            user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,cp,estado)
 
             if(sexo=='Masculino'):
                 if(peso>'0' and peso<='47.63'):
@@ -144,7 +145,7 @@ def boxeador():
             if (not nombre or not apellidoMat or not apellidoPat or not email
             or not password or not confirmPassword or not nacimiento or not telCasa
             or not sexo or not inicio or not calle or not numeroCalle or not colonia
-            or not municipio or not codigoPostal or not estado or not tipoSangre or not guardia or not estatura
+            or not municipio or not cp or not estado or not tipoSangre or not guardia or not estatura
             or not peso or not numPeleas):
                 msg='Favor de llenar todos los campos!'
                 return render_template('register_boxer.html',msg=msg)
@@ -183,8 +184,8 @@ def entrenador():
         #USUARIOS
         agregar_usuario=("INSERT INTO usuarios (nombre,apellido_paterno,apellido_materno,email,"\
         "contrasena,fecha_nacimiento,telefono_casa,celular,sexo,calle,numero,colonia,fecha_registro,"\
-        "municipio,codigoPostal,estado)"\
-        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
+        "municipio,cp,estado)"\
+        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
 
         agregar_entrenador=("INSERT INTO entrenado (id_entrenador,no_peleas,bandera_entrenador_manager) VALUES (%s,%s,%s)")
 
@@ -204,7 +205,7 @@ def entrenador():
         numeroCalle=userDetails['numeroCalle']
         colonia=userDetails['colonia']
         municipio=userDetails['municipio']
-        codigoPostal=userDetails['CP']
+        cp=userDetails['CP']
         estado=userDetails['estado']
         numPeleas=userDetails['peleas']
         tipoEntrenador=userDetails['tipoEntrenador']
@@ -217,12 +218,12 @@ def entrenador():
             msg='Ya existe el usuario!'
             return render_template('register_referee.html',title='Registro',msg=msg)
 
-        user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,codigoPostal,estado)
+        user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,cp,estado)
 
         if (not nombre or not apellidoMat or not apellidoPat or not email
         or not password or not confirmPassword or not nacimiento or not telCasa
         or not sexo or not inicio or not calle or not numeroCalle or not colonia
-        or not municipio or not codigoPostal or not estado or not numPeleas):
+        or not municipio or not cp or not estado or not numPeleas):
             msg='Favor de llenar todos los campos!'
             return render_template('register_trainer.html',msg=msg)
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
@@ -261,8 +262,8 @@ def referee():
         #USUARIOS
         agregar_usuario=("INSERT INTO usuarios (nombre,apellido_paterno,apellido_materno,email,"\
         "contrasena,fecha_nacimiento,telefono_casa,celular,sexo,calle,numero,colonia,fecha_registro,"\
-        "municipio,codigoPostal,estado)"\
-        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
+        "municipio,cp,estado)"\
+        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
 
         agregar_referi=("INSERT INTO referi_juez (id_referi_juez, bandera_referi_juez, estado_civil,"\
         "ocupacion, escolaridad, id_licencia, quien_expide, notas_licencia, fecha_expiracion_licencia, anios_experiencia)"\
@@ -284,7 +285,7 @@ def referee():
         numeroCalle=userDetails['numeroCalle']
         colonia=userDetails['colonia']
         municipio=userDetails['municipio']
-        codigoPostal=userDetails['CP']
+        cp=userDetails['CP']
         estado=userDetails['estado']
 
         tipoReferee=userDetails['tipoReferee']
@@ -308,12 +309,12 @@ def referee():
 
 
 
-        user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,codigoPostal,estado)
+        user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,cp,estado)
 
         if (not nombre or not apellidoMat or not apellidoPat or not email
         or not password or not confirmPassword or not nacimiento or not telCasa
         or not sexo or not inicio or not calle or not numeroCalle or not colonia
-        or not municipio or not codigoPostal or not estado or not estadoCivil or not ocupacion or not escolaridad
+        or not municipio or not cp or not estado or not estadoCivil or not ocupacion or not escolaridad
         or not añosExperiencia):
             msg='Favor de llenar todos los campos!'
             return render_template('register_referee.html',title='Registro',msg=msg)
@@ -338,7 +339,6 @@ def referee():
                 return redirect(url_for('home'))
 
 
-#Regstro de Dueño
 @app.route('/register/dueno',methods=['GET','POST'])
 def dueno():
     msg=''
@@ -351,11 +351,11 @@ def dueno():
         #USUARIOS
         agregar_usuario=("INSERT INTO usuarios (nombre,apellido_paterno,apellido_materno,email,"\
         "contrasena,fecha_nacimiento,telefono_casa,celular,sexo,calle,numero,colonia,fecha_registro,"\
-        "municipio,codigoPostal, estado)"\
-        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
+        "municipio,cp, estado)"\
+        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
 
         agregar_gym=("INSERT INTO gyms (id_propietario, nombre, direccion,"\
-        "ciudad, estado, alcaldia_municipio, cpGym, horario, telefono, email)"\
+        "ciudad, estado, alcaldia_municipio, cp, horario, telefono, email)"\
         "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
 
         userDetails= request.form
@@ -374,7 +374,7 @@ def dueno():
         numeroCalle=userDetails['numeroCalle']
         colonia=userDetails['colonia']
         municipio=userDetails['municipio']
-        codigoPostal=userDetails['CP']
+        cp=userDetails['CP']
         estado=userDetails['estado']
 
         nombreGym=userDetails['gymNombre']
@@ -396,12 +396,12 @@ def dueno():
             return render_template('register_referee.html',title='Registro',msg=msg)
 
 
-        user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,codigoPostal,estado)
+        user_data=(nombre,apellidoPat,apellidoMat,email,password,nacimiento,telCasa,celular,sexo,calle,numeroCalle,colonia,inicio,municipio,cp,estado)
 
         if (not nombre or not apellidoMat or not apellidoPat or not email
         or not password or not confirmPassword or not nacimiento or not telCasa
         or not sexo or not inicio or not calle or not numeroCalle or not colonia
-        or not municipio or not codigoPostal or not estado or not nombreGym or not direccionGym or not ciudadGym
+        or not municipio or not cp or not estado or not nombreGym or not direccionGym or not ciudadGym
         or not estadoGym or not emailGym):
             msg='Favor de llenar todos los campos!'
             return render_template('register_owner.html',title='Registro')
@@ -424,8 +424,6 @@ def dueno():
                 mysql.connection.commit()
                 cursor.close()
                 return redirect(url_for('home'))
-
-
 
 @app.route("/home")
 def home():
