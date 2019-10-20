@@ -427,6 +427,7 @@ def dueno():
 
 @app.route("/home")
 def home():
+    return render_template('home.html',title='Home')
     if 'user' in session:
         name = request.args.get('name')
         id = request.args.get('id')
@@ -435,11 +436,21 @@ def home():
         return redirect(url_for('login'))
 
 
+@app.route("/home/Entrenadores")
+def Entrenadores():
+    return render_template('entrenadores.html',title='Home')
+
+@app.route("/home/Gimnasios")
+def Gimnasios():
+    return render_template('gimnasios.html',title='Home')
+
 @app.route("/home/RegistroPeleas")
 def RegistroPeleas():
     return render_template('registro_Peleas.html',title='Home')
 
-
+@app.route("/home/Boxeadores")
+def Boxeadores():
+    return render_template('boxeadores.html',title='Home')
 
 @app.route('/login',methods=['GET','POST'])
 def login():
