@@ -7,7 +7,7 @@ import re
 app = Flask(__name__)
 
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'admin'
+app.config['MYSQL_PASSWORD'] = 'Oswaldo#157'
 app.config['MYSQL_DB'] = 'wbc_final2'
 app.config['MYSQL_HOST'] = 'localhost'
 app.secret_key = urandom(24)
@@ -427,7 +427,7 @@ def dueno():
 
 @app.route("/home")
 def home():
-    return render_template('home.html',title='Home')
+    #return render_template('home.html',title='Home')
     if 'user' in session:
         name = request.args.get('name')
         id = request.args.get('id')
@@ -438,11 +438,20 @@ def home():
 
 @app.route("/home/Entrenadores")
 def Entrenadores():
-    return render_template('entrenadores.html',title='Home')
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido_paterno, usuarios.apellido_materno, entrenado.no_peleas, usuarios.celular FROM usuarios , entrenado where usuarios.id_usuario = entrenado.id")
+    data = cur.fetchall()
+    cur.close()
+    return render_template('entrenadores.html', entrenadores = data)
+
 
 @app.route("/home/Gimnasios")
 def Gimnasios():
-    return render_template('gimnasios.html',title='Home')
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT gyms.id_gym, gyms.nombre, gyms.direccion, gyms.ciudad, gyms.estado, gyms.horario, gyms.telefono FROM gyms")
+    data = cur.fetchall()
+    cur.close()
+    return render_template('gimnasios.html',gimnasios= data)
 
 @app.route("/home/RegistroPeleas")
 def RegistroPeleas():
@@ -450,7 +459,11 @@ def RegistroPeleas():
 
 @app.route("/home/Boxeadores")
 def Boxeadores():
-    return render_template('boxeadores.html',title='Home')
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido_paterno, boxeadores.alias, boxeadores.guardia, boxeadores.num_peleas, boxeadores.estatura, boxeadores.peso FROM usuarios, boxeadores where usuarios.id_usuario = boxeadores.id_boxeador")
+    data = cur.fetchall()
+    cur.close()
+    return render_template('boxeadores.html',boxeadores = data)
 
 @app.route('/login',methods=['GET','POST'])
 def login():

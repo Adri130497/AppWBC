@@ -6,20 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Perfil</title>
   <!-- BOOTSTRAP STYLES-->
-  <link href="/static/css/bootstrap.css" rel="stylesheet" />
+  <link href="static/css/bootstrap.css" rel="stylesheet" />
   <!-- FONTAWESOME STYLES-->
-  <link href="/static/css/font-awesome.css" rel="stylesheet" />
+  <link href="static/css/font-awesome.css" rel="stylesheet" />
   <!-- MORRIS CHART STYLES-->
-  <link href="/static/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+  <link href="static/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
   <!-- CUSTOM STYLES-->
-  <link href="/static/css/custom.css" rel="stylesheet" />
+  <link href="static/css/custom.css" rel="stylesheet" />
   <!-- GOOGLE FONTS-->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-  <!-- ESTILOS PARA TABLAS-->
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='entrenadores.css')}}">
 </head>
 
+<body>
   <form method="POST">
     <div id="wrapper">
       <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
@@ -30,7 +28,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <img class="navbar-brand" src="/static/img/logo_wbc.png" style="width:130px;height:90px;" />
+          <img class="navbar-brand" src="static/img/logo_wbc.png" style="width:130px;height:90px;" />
         </div>
         <div style="color: white;
             padding: 30px 50px 5px 50px;
@@ -43,7 +41,7 @@
         <div class="sidebar-collapse">
           <ul class="nav" id="main-menu">
             <li class="text-center">
-              <img src="/static/img/find_user.png" class="user-image img-responsive" />
+              <img src="static/img/find_user.png" class="user-image img-responsive" />
             </li>
             <li>
               <h3>{{name}}</h3>
@@ -55,7 +53,7 @@
               <a class="nav-link" href="/home/Gimnasios"></i> Gimnasios</a>
             </li>
             <li>
-              <a class="nav-link" href="/home/RegistroPeleas"></i> Registro de Peleas</a>
+              <a class="nav-link" class="nav-link" href="/home/RegistroPeleas"></i> Registro de Peleas</a>
             </li>
             <li>
               <a class="nav-link" href="/home/Boxeadores"></i> Boxeadores</a>
@@ -67,16 +65,8 @@
         </div>
 
       </nav>
-
-
-
-      <!-- /. PAGE WRAPPER  -->
-    </div>
-
-
-          <body>
-  {% block content %}
-        <div id="page-wrapper">
+      <!-- /. NAV SIDE  -->
+      <div id="page-wrapper">
         <div style="float: left; width: 500px;">
           <a class="twitter-timeline" data-lang="es" data-width="500" data-height="800"
             href="https://twitter.com/WBCBoxing?ref_src=twsrc%5Etfw">WBCBoxing en Twitter</a>
@@ -168,28 +158,23 @@
           </table>
         </div>
       </div>
-
-
-  {% endblock %}
-      </body>
+      <!-- /. PAGE WRAPPER  -->
+    </div>
     <!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
-    <script src="/static/js/jquery-1.10.2.js"></script>
+    <script src="static/js/jquery-1.10.2.js"></script>
     <!-- BOOTSTRAP SCRIPTS -->
-    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
-    <script src="/static/js/jquery.metisMenu.js"></script>
+    <script src="static/js/jquery.metisMenu.js"></script>
     <!-- MORRIS CHART SCRIPTS -->
-    <script src="/static/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="/static/js/morris/morris.js"></script>
+    <script src="static/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="static/js/morris/morris.js"></script>
     <!-- CUSTOM SCRIPTS -->
-    <script src="/static/js/custom.js"></script>
+    <script src="static/js/custom.js"></script>
 
   </form>
-
-
-
+</body>
 
 </html>
-
