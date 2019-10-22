@@ -521,6 +521,7 @@ def RegistroPeleas():
 
 
 
+
 #Redireccion a login
 @app.route('/',methods=['GET','POST'])
 def mainPage():
