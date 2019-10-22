@@ -328,7 +328,6 @@ def referee():
             msg='Las contraseñas no coinciden'
             return render_template('register_referee.html',title='Registro',msg=msg)
         else:
-
                 cursor.execute(agregar_usuario,user_data)
                 #Entrenador
                 id_referi=cursor.lastrowid
@@ -338,7 +337,7 @@ def referee():
                 cursor.close()
                 return redirect(url_for('home'))
 
-
+#Registro dueños de Gimnasio
 @app.route('/register/dueno',methods=['GET','POST'])
 def dueno():
     msg=''
@@ -425,6 +424,7 @@ def dueno():
                 cursor.close()
                 return redirect(url_for('home'))
 
+#Pantalla de Inicio
 @app.route("/home")
 def home():
     #return render_template('home.html',title='Home')
@@ -435,7 +435,7 @@ def home():
     else:
         return redirect(url_for('login'))
 
-
+#Informacion Entrenadores
 @app.route("/home/Entrenadores")
 def Entrenadores():
     cur = mysql.connection.cursor()
@@ -444,7 +444,7 @@ def Entrenadores():
     cur.close()
     return render_template('entrenadores.html', entrenadores = data)
 
-
+#Informacion Gimnasios
 @app.route("/home/Gimnasios")
 def Gimnasios():
     cur = mysql.connection.cursor()
@@ -453,10 +453,7 @@ def Gimnasios():
     cur.close()
     return render_template('gimnasios.html',gimnasios= data)
 
-@app.route("/home/RegistroPeleas")
-def RegistroPeleas():
-    return render_template('registro_Peleas.html',title='Home')
-
+#Informacion Boxeadores
 @app.route("/home/Boxeadores")
 def Boxeadores():
     cur = mysql.connection.cursor()
@@ -465,6 +462,7 @@ def Boxeadores():
     cur.close()
     return render_template('boxeadores.html',boxeadores = data)
 
+#Login
 @app.route('/login',methods=['GET','POST'])
 def login():
     if request.method == 'GET':
@@ -490,17 +488,40 @@ def login():
                 id=cursor.fetchone()
                 return redirect(url_for('home',name=name,id=id))
 
+#Template Registro
 @app.route('/register',methods=['GET','POST'])
 def register():
     if request.method == 'GET':
         return render_template('register.html',title='Registro')
 
+#logout
 @app.route("/logout")
 def logout():
     session.pop('user')
     session.clear()
     return redirect(url_for('index'))
 
+#Registro de Peleas
+@app.route("/home/RegistroPeleas",methods=['GET','POST'])
+def RegistroPeleas():
+    msg=''
+    cursor=mysql.connection.cursor()
+
+
+    if request.method == 'GET':
+        return render_template('registro_Peleas.html',title='Registro Peleas')
+    else:
+        userDetails= request.form
+        checkbox_box1=request.form.get('bandera_boxeador1')
+        checkbox_box2=request.form.get('bandera_boxeador2')
+        checkbox_referi=request.form.get('bandera_referi')
+        checkbox_gym=request.form.get('bandera_gym')
+        if checkbox_box1:
+            id_box1=userDetails['id_boxeador1']
+
+
+
+#Redireccion a login
 @app.route('/',methods=['GET','POST'])
 def mainPage():
         return redirect(url_for('login'))

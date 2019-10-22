@@ -1,5 +1,6 @@
 body {
-    background: url('static/amateur.jpg') fixed;
+    background-image: url('static/amateur.jpg') fixed;
+    
     background-size: cover;
 }
 
