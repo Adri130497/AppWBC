@@ -7,7 +7,7 @@ import re
 app = Flask(__name__)
 
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Oswaldo#157'
+app.config['MYSQL_PASSWORD'] = 'admin'
 app.config['MYSQL_DB'] = 'wbc_final2'
 app.config['MYSQL_HOST'] = 'localhost'
 app.secret_key = urandom(24)

@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Perfil</title>
   <!-- BOOTSTRAP STYLES-->
-  <link href="static/css/bootstrap.css" rel="stylesheet" />
+  <link href="/static/css/bootstrap.css" rel="stylesheet" />
   <!-- FONTAWESOME STYLES-->
-  <link href="static/css/font-awesome.css" rel="stylesheet" />
+  <link href="/static/css/font-awesome.css" rel="stylesheet" />
   <!-- MORRIS CHART STYLES-->
-  <link href="static/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+  <link href="/static/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
   <!-- CUSTOM STYLES-->
-  <link href="static/css/custom.css" rel="stylesheet" />
+  <link href="/static/css/custom.css" rel="stylesheet" />
   <!-- GOOGLE FONTS-->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
@@ -28,7 +28,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <img class="navbar-brand" src="static/img/logo_wbc.png" style="width:130px;height:90px;" />
+          <img class="navbar-brand" src="/static/img/logo_wbc.png" style="width:130px;height:90px;" />
         </div>
         <div style="color: white;
             padding: 30px 50px 5px 50px;
@@ -41,7 +41,7 @@
         <div class="sidebar-collapse">
           <ul class="nav" id="main-menu">
             <li class="text-center">
-              <img src="static/img/find_user.png" class="user-image img-responsive" />
+              <img src="/static/img/find_user.png" class="user-image img-responsive" />
             </li>
             <li>
               <h3>{{name}}</h3>
@@ -65,6 +65,7 @@
         </div>
 
       </nav>
+      {% block content %}
       <!-- /. NAV SIDE  -->
       <div id="page-wrapper">
         <div style="float: left; width: 500px;">
@@ -158,21 +159,22 @@
           </table>
         </div>
       </div>
+      {% endblock %}
       <!-- /. PAGE WRAPPER  -->
     </div>
     <!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
-    <script src="static/js/jquery-1.10.2.js"></script>
+    <script src="/static/js/jquery-1.10.2.js"></script>
     <!-- BOOTSTRAP SCRIPTS -->
-    <script src="static/js/bootstrap.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
-    <script src="static/js/jquery.metisMenu.js"></script>
+    <script src="/static/js/jquery.metisMenu.js"></script>
     <!-- MORRIS CHART SCRIPTS -->
-    <script src="static/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="static/js/morris/morris.js"></script>
+    <script src="/static/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="/static/js/morris/morris.js"></script>
     <!-- CUSTOM SCRIPTS -->
-    <script src="static/js/custom.js"></script>
+    <script src="/static/js/custom.js"></script>
 
   </form>
 </body>
