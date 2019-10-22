@@ -436,8 +436,8 @@ def home():
         return redirect(url_for('login'))
 
 #Informacion Entrenadores
-@app.route("/home/Entrenadores")
-def Entrenadores():
+@app.route("/home/Entrenadores/<int:iduser>")
+def Entrenadores(iduser):
     cur = mysql.connection.cursor()
     cur.execute("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido_paterno, usuarios.apellido_materno, entrenado.no_peleas, usuarios.celular FROM usuarios , entrenado where usuarios.id_usuario = entrenado.id")
     data = cur.fetchall()
@@ -454,7 +454,7 @@ def Gimnasios():
     return render_template('gimnasios.html',gimnasios= data)
 
 #Informacion Boxeadores
-@app.route("/home/Boxeadores")
+@app.route("/home/Boxeadores/")
 def Boxeadores():
     cur = mysql.connection.cursor()
     cur.execute("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido_paterno, boxeadores.alias, boxeadores.guardia, boxeadores.num_peleas, boxeadores.estatura, boxeadores.peso FROM usuarios, boxeadores where usuarios.id_usuario = boxeadores.id_boxeador")

@@ -47,8 +47,9 @@
               <h3>{{name}}</h3>
             </li>
             <li>
-              <a class="nav-link" href="/home/Entrenadores"></i> Entrenadores</a>
+              <a class="nav-link" href="{{ url_for('Entrenadores', iduser=id) }}"></i> Entrenadores</a>
             </li>
+
             <li>
               <a class="nav-link" href="/home/Gimnasios"></i> Gimnasios</a>
             </li>
