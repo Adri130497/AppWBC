@@ -14,7 +14,7 @@
             <a id="regresar" href="/home" type="submit" class="btn btn-primary mb-2">Regresar</a>
         </div>
       <div class="col text-center">
-        <img id="logo" src="{{url_for('static', filename='logo-large.png')}}" alt="logo wbc">
+        <img id="logo" src="logo-large.png" alt="logo wbc">
       </div>
 
       <form method="POST">
@@ -64,7 +64,6 @@
               <!--se ingresa el correo, se busca el id asociado a ese correo y si este id tiene un registro de boxeador, se guarda en bd
         el id en el campo id_boxeador2-->
               <input type="email" class="form-control" id="id_boxeador2" placeholder="Busca al boxeador por su id...">
-
           </div>
           <!--informacion si el boxeador 2 no esta registrado-->
           <div id="boxeador2_noregistrado" class="form-group">
@@ -72,12 +71,12 @@
               <!--id:"nombre_boxeador2" hace match con el campo nombre_boxeador2-->
               <input type="text" class="form-control" id="nombre_boxeador2" placeholder="Ingresa el nombre del boxeador 1...">
           </div>
-          <div id="boxeador2_noregistrado" class="form-group">
+          <div id="div_correo_boxeador2" class="form-group">
               <label  id="labelCorreo_box2"  for="exampleFormControlInput1"> Correo Boxeador 2</label>
               <!--id:"correo_boxeador2" hace match con el campo correo_boxeador2-->
               <input type="email" class="form-control" id="correo_boxeador2" placeholder="Ingresa el correo del boxeador 2...">
           </div>
-          <div  class="form-group">
+          <div  id="boxeador2_noregistrado3" class="form-group">
               <label id="labelPeso_box2" for="exampleFormControlInput1">Peso Boxeador 2</label>
               <!--id:"peso_boxeador_2" hace match con el campo peso_boxeador2-->
               <input  type="text" class="form-control" id="peso_boxeador_2" placeholder="Ingresa el peso del boxeador 1...">
@@ -195,10 +194,6 @@
           var correo_boxeadorLabel1 = document.getElementById("labelCorreo_box1");
           var labelPeso_box1= document.getElementById("labelPeso_box1");
           var peso_boxeador1= document.getElementById("peso_boxeador_1");
-
-
-
-
           if(checkbox.checked == true){
             id_boxeador1.style.display ="block";
             nombre_boxeador1.style.display ="none";
@@ -206,10 +201,7 @@
             correo_boxeadorLabel1.style.display="none";
             labelPeso_box1.style.display="none";
             peso_boxeador1.style.display="none";
-
-
           }
-
           else{
             id_boxeador1.style.display ="none";
             nombre_boxeador1.style.display="block";
@@ -217,64 +209,48 @@
             correo_boxeadorLabel1.style.display="block";
             labelPeso_box1.style.display="block";
             peso_boxeador1.style.display="block";
-
           }
         }
-
         function checkfunction2(){
           var checkbox = document.getElementById("bandera_boxeador2");
           var id_boxeador2 = document.getElementById("boxeador2_registrado");
           var nombre_boxeador2 = document.getElementById("boxeador2_noregistrado");
-          var correo_boxeador2 = document.getElementById("correo_boxeador2");
-          var correo_boxeadorLabel2 = document.getElementById("labelCorreo_box2");
-          var labelPeso_box2= document.getElementById("labelPeso_box2");
-          var peso_boxeador2= document.getElementById("peso_boxeador_2");
-
+          var correo_boxeador2 = document.getElementById("div_correo_boxeador2");
+          var peso_boxeador2= document.getElementById("boxeador2_noregistrado3");
           if(checkbox.checked == true){
             id_boxeador2.style.display ="block";
             nombre_boxeador2.style.display ="none";
-            correo_boxeado2.style.display="none";
-            correo_boxeadorLabel2.style.display="none";
-            labelPeso_box2.style.display="none";
+            correo_boxeador2.style.display="none";
             peso_boxeador2.style.display="none";
           }
-
           else{
             id_boxeador2.style.display ="none";
             nombre_boxeador2.style.display="block";
-            correo_boxeado2.style.display="block";
-            correo_boxeadorLabel2.style.display="block";
-            labelPeso_box2.style.display="block";
+            correo_boxeador2.style.display="block";
             peso_boxeador2.style.display="block";
           }
         }
-
         function checkfunctionReferi(){
           var checkbox = document.getElementById("bandera_referi");
           var id_referi = document.getElementById("referi_registrado");
           var nombre_referi = document.getElementById("referi_noregistrado");
-
           if(checkbox.checked == true){
             id_referi.style.display ="block";
             nombre_referi.style.display ="none";
           }
-
           else{
             id_referi.style.display ="none";
             nombre_referi.style.display="block";
           }
         }
-
         function checkfunctionGym(){
           var checkbox = document.getElementById("bandera_gym");
           var id_gym = document.getElementById("gym_registrado");
           var nombre_gym = document.getElementById("gym_noregistrado");
-
           if(checkbox.checked == true){
             id_gym.style.display ="block";
             nombre_gym.style.display ="none";
           }
-
           else{
             id_gym.style.display ="none";
             nombre_gym.style.display="block";
