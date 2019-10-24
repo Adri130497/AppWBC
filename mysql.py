@@ -436,29 +436,54 @@ def home():
 #Informacion Entrenadores
 @app.route("/home/Entrenadores/<name>/<int:id>")
 def Entrenadores(name,id):
+    id = str(id)
     cur = mysql.connection.cursor()
+    curr = mysql.connection.cursor()
+
     cur.execute("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido_paterno, usuarios.apellido_materno, entrenado.no_peleas, usuarios.celular FROM usuarios , entrenado where usuarios.id_usuario = entrenado.id")
+    curr.execute("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido_paterno, usuarios.apellido_materno, entrenado.no_peleas, usuarios.celular FROM usuarios , entrenado where usuarios.id_usuario = entrenado.id AND usuarios.id_usuario = '" + id + "' AND entrenado.id = '" + id + "' ")
+
     data = cur.fetchall()
+    data2 = curr.fetchall()
+
     cur.close()
-    return render_template('entrenadores.html', entrenadores = data, name=name,id=id)
+    return render_template('entrenadores.html',entrenador = data2, entrenadores = data, name=name,id=id)
 
 #Informacion Gimnasios
 @app.route("/home/Gimnasios/<name>/<int:id>")
 def Gimnasios(name,id):
+    id = str(id)
     cur = mysql.connection.cursor()
+    curr = mysql.connection.cursor()
     cur.execute("SELECT gyms.id_gym, gyms.nombre, gyms.direccion, gyms.ciudad, gyms.estado, gyms.horario, gyms.telefono FROM gyms")
+    curr.execute("SELECT gyms.id_gym, gyms.nombre, gyms.direccion, gyms.ciudad, gyms.estado, gyms.horario, gyms.telefono FROM gyms WHERE gyms.id_gym = '" + id+ "'")
+
     data = cur.fetchall()
+    data2 = curr.fetchall()
     cur.close()
-    return render_template('gimnasios.html',gimnasios= data,name=name,  id=id)
+
+    return render_template('gimnasios.html',gym = data2, gimnasios= data,name=name,  id=id)
 
 #Informacion Boxeadores
 @app.route("/home/Boxeadores/<name>/<int:id>")
 def Boxeadores(name,id):
+    id = str(id)
+
     cur = mysql.connection.cursor()
-    cur.execute("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido_paterno, boxeadores.alias, boxeadores.guardia, boxeadores.num_peleas, boxeadores.estatura, boxeadores.peso FROM usuarios, boxeadores where usuarios.id_usuario = boxeadores.id_boxeador")
+    curr = mysql.connection.cursor()
+
+    boxeadores = ("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido_paterno, boxeadores.alias, boxeadores.guardia, boxeadores.num_peleas, boxeadores.estatura, boxeadores.peso FROM usuarios, boxeadores where usuarios.id_usuario = boxeadores.id_boxeador")
+    boxeador = ("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido_paterno, boxeadores.alias, boxeadores.guardia, boxeadores.num_peleas, boxeadores.estatura, boxeadores.peso FROM usuarios, boxeadores where usuarios.id_usuario = boxeadores.id_boxeador AND usuarios.id_usuario = '" + id+ "' AND boxeadores.id_boxeador = '" + id+ "'")
+
+    cur.execute(boxeadores)
+    curr.execute(boxeador)
+
     data = cur.fetchall()
+    data2 = curr.fetchall()
     cur.close()
-    return render_template('boxeadores.html',boxeadores = data,name=name, id=id)
+
+    return render_template('boxeadores.html',boxeadores = data, boxeador = data2, name=name, id=id)
+
 
 #Login
 @app.route('/login',methods=['GET','POST'])

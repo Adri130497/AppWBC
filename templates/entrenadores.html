@@ -1,7 +1,11 @@
 {% extends "home.html" %}
 {% block content %}
-        <div style="float: right; padding-right:400px;">
-          <table class="table table-borderless table-dark">
+<div id="page-wrapper">
+ <div class="container" id="coverpage">
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+       <table id="tableblock" class="table table-bordered table-striped mb-0">
+          <h2>Mi Información</h2>
             <thead>
               <tr>
                 <th scope="col">ID</th>
@@ -13,7 +17,7 @@
               </tr>
             </thead>
             <tbody>
-              {% for row in entrenadores %}
+            {% for row in entrenador %}
               <tr>
                 <td>{{row.0}}</td>
                 <td>{{row.1}}</td>
@@ -24,7 +28,37 @@
               </tr>
             </tbody>
             {% endfor %}
-          </table>
-        </div>
+       </table>
+     </div>
+     <div class="col-md-6 col-sm-12">
+       <table id="tabletxs" class="table table-bordered table-striped mb-0">
+         <h2>Entrenadores</h2>
+                     <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido Paterno</th>
+                <th scope="col">Apellido Materno</th>
+                <th scope="col">Num. Peleas</th>
+                <th scope="col">Celular</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for row in entrenadores %}
+              <tr>
+                <td>{{row.0}}</td>
+                <td>{{row.1}}</td>
+                <td>{{row.2}}</td>
+                <td>{{row.3}}</td>
+                <td>{{row.4}}</td>
+                <td>{{row.5}}</td>
+              </tr>
+            </tbody>
+            {% endfor %}
+       </table>
+     </div>
+  </div>
+ </div>
+</div>
 {% endblock %}
 
