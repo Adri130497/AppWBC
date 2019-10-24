@@ -47,17 +47,17 @@
               <h3>{{name}}</h3>
             </li>
             <li>
-              <a class="nav-link" href="{{ url_for('Entrenadores', iduser=id) }}"></i> Entrenadores</a>
+              <a  href="{{ url_for('Entrenadores', name=name, id=id) }}"></i> Entrenadores</a>
             </li>
 
             <li>
-              <a class="nav-link" href="/home/Gimnasios"></i> Gimnasios</a>
+              <a  href="{{ url_for('Gimnasios', name=name, id=id) }}"></i> Gimnasios</a>
             </li>
             <li>
-              <a class="nav-link" class="nav-link" href="/home/RegistroPeleas"></i> Registro de Peleas</a>
+              <a href="{{ url_for('RegistroPeleas', name=name, id=id) }}"></i> Registro de Peleas</a>
             </li>
             <li>
-              <a class="nav-link" href="/home/Boxeadores"></i> Boxeadores</a>
+              <a href="{{ url_for('Boxeadores', name=name, id=id) }}"></i> Boxeadores</a>
             </li>
 
 

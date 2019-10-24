@@ -16,8 +16,6 @@ app.secret_key = urandom(24)
 
 mysql = MySQL(app)
 
-
-
 #Registro de Boxeador
 @app.route('/register/boxeador',methods=['GET','POST'])
 def boxeador():
@@ -436,31 +434,31 @@ def home():
         return redirect(url_for('login'))
 
 #Informacion Entrenadores
-@app.route("/home/Entrenadores/<int:iduser>")
-def Entrenadores(iduser):
+@app.route("/home/Entrenadores/<name>/<int:id>")
+def Entrenadores(name,id):
     cur = mysql.connection.cursor()
     cur.execute("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido_paterno, usuarios.apellido_materno, entrenado.no_peleas, usuarios.celular FROM usuarios , entrenado where usuarios.id_usuario = entrenado.id")
     data = cur.fetchall()
     cur.close()
-    return render_template('entrenadores.html', entrenadores = data)
+    return render_template('entrenadores.html', entrenadores = data, name=name,id=id)
 
 #Informacion Gimnasios
-@app.route("/home/Gimnasios")
-def Gimnasios():
+@app.route("/home/Gimnasios/<name>/<int:id>")
+def Gimnasios(name,id):
     cur = mysql.connection.cursor()
     cur.execute("SELECT gyms.id_gym, gyms.nombre, gyms.direccion, gyms.ciudad, gyms.estado, gyms.horario, gyms.telefono FROM gyms")
     data = cur.fetchall()
     cur.close()
-    return render_template('gimnasios.html',gimnasios= data)
+    return render_template('gimnasios.html',gimnasios= data,name=name,  id=id)
 
 #Informacion Boxeadores
-@app.route("/home/Boxeadores/")
-def Boxeadores():
+@app.route("/home/Boxeadores/<name>/<int:id>")
+def Boxeadores(name,id):
     cur = mysql.connection.cursor()
     cur.execute("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido_paterno, boxeadores.alias, boxeadores.guardia, boxeadores.num_peleas, boxeadores.estatura, boxeadores.peso FROM usuarios, boxeadores where usuarios.id_usuario = boxeadores.id_boxeador")
     data = cur.fetchall()
     cur.close()
-    return render_template('boxeadores.html',boxeadores = data)
+    return render_template('boxeadores.html',boxeadores = data,name=name, id=id)
 
 #Login
 @app.route('/login',methods=['GET','POST'])
@@ -502,12 +500,11 @@ def logout():
     return redirect(url_for('index'))
 
 #Registro de Peleas
-@app.route("/home/RegistroPeleas",methods=['GET','POST'])
-def RegistroPeleas():
+@app.route("/home/RegistroPeleas/<name>/<int:id>",methods=['GET','POST'])
+def RegistroPeleas(name,id):
     msg=''
     cursor=mysql.connection.cursor()
-
-
+    registerData=list()
     if request.method == 'GET':
         return render_template('registro_Peleas.html',title='Registro Peleas')
     else:
@@ -518,6 +515,30 @@ def RegistroPeleas():
         checkbox_gym=request.form.get('bandera_gym')
         if checkbox_box1:
             id_box1=userDetails['id_boxeador1']
+            pesoDBbox1=cursor.execute("SELECT peso FROM boxeadores where  id_boxeador='" + id_box1+ "'")
+            dataPeso1=cursor.fetchone()
+            nombreDBbox1=cursor.execute("SELECT nombre FROM usuarios where id_usuario='"+id_box1+"'")
+            dataNombre1=cursor.fetchone()
+
+            registerData.append(id_box1)
+            registerData.append(dataPeso1)
+            registerData.append(dataNombre1)
+
+            print(registerData)
+
+            return ("Success")
+        else:
+            nombre_box1=userDetails['nombre_boxeador1']
+            correo_box1=userDetails['correo_boxeador1']
+            peso_box1=userDetails['peso_boxeador_1']
+
+            registerData.append(nombre_box1)
+            registerData.append(correo_box1)
+            registerData.append(peso_box1)
+            print(registerData)
+            return ("Success")
+
+
 
 
 

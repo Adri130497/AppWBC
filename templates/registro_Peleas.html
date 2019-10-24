@@ -14,7 +14,7 @@
             <a id="regresar" href="/home" type="submit" class="btn btn-primary mb-2">Regresar</a>
         </div>
       <div class="col text-center">
-        <img id="logo" src="logo-large.png" alt="logo wbc">
+        <img id="logo" src="{{url_for('static', filename='logo-large.png')}}" alt="logo wbc">
       </div>
 
       <form method="POST">
@@ -27,27 +27,27 @@
           </div>
           <!--informacion mostrada si el checkbox se marca-->
           <div id="boxeador1_registrado" style="display: none" class="form-group">
-              <label for="exampleFormControlInput1">ID Boxeador 1</label>
+              <label>ID Boxeador 1</label>
               <!--se ingresa el correo, se busca el id asociado a ese correo y si este id tiene un registro de boxeador, se guarda en bd
         el id en el campo id_boxeador1-->
-              <input type="email" class="form-control" name="id_boxeador1" id="id_boxeador1" placeholder="Busca al boxeador por su id...">
+              <input type="text" class="form-control" name="id_boxeador1" id="id_boxeador1" placeholder="Busca al boxeador por su id...">
 
           </div>
           <!--informacion si el boxeador no esta registrado-->
           <div id="boxeador1_noregistrado" class="form-group">
               <label for="exampleFormControlInput1">Nombre Boxeador 1</label>
               <!--id:"nombre_boxeador1" hace match con el campo nombre_boxeador1-->
-              <input type="text" class="form-control" id="nombre_boxeador1" placeholder="Ingresa el nombre del boxeador 1...">
+              <input type="text" class="form-control" name="nombre_boxeador1" id="nombre_boxeador1" placeholder="Ingresa el nombre del boxeador 1...">
           </div>
           <div id="boxeador1_noregistrado" class="form-group">
               <!--id:"correo_boxeador1" hace match con el campo correo_boxeador1-->
               <label id="labelCorreo_box1" for="exampleFormControlInput1">Correo Boxeador 1</label>
-              <input type="email" class="form-control" id="correo_boxeador1" placeholder="Ingresa el correo del boxeador 1...">
+              <input type="email" class="form-control" name="correo_boxeador1" id="correo_boxeador1" placeholder="Ingresa el correo del boxeador 1...">
           </div>
           <div class="form-group">
               <label id="labelPeso_box1" for="exampleFormControlInput1">Peso Boxeador 1</label>
               <!--id:"peso_boxeador_1" hace match con el campo peso_boxeador1-->
-              <input type="text" class="form-control" id="peso_boxeador_1" placeholder="Ingresa el peso del boxeador 1...">
+              <input type="text" class="form-control" name="peso_boxeador_1" id="peso_boxeador_1" placeholder="Ingresa el peso del boxeador 1...">
           </div>
           <hr />
 
