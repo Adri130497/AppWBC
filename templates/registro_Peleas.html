@@ -63,48 +63,79 @@
               <label for="exampleFormControlInput1">ID Boxeador 2</label>
               <!--se ingresa el correo, se busca el id asociado a ese correo y si este id tiene un registro de boxeador, se guarda en bd
         el id en el campo id_boxeador2-->
-              <input type="email" class="form-control" id="id_boxeador2" placeholder="Busca al boxeador por su id...">
+              <input type="text" class="form-control" name="id_boxeador2" id="id_boxeador2" placeholder="Busca al boxeador por su id...">
           </div>
           <!--informacion si el boxeador 2 no esta registrado-->
           <div id="boxeador2_noregistrado" class="form-group">
               <label for="exampleFormControlInput1">Nombre Boxeador 2</label>
               <!--id:"nombre_boxeador2" hace match con el campo nombre_boxeador2-->
-              <input type="text" class="form-control" id="nombre_boxeador2" placeholder="Ingresa el nombre del boxeador 1...">
+              <input type="text" class="form-control" name="nombre_boxeador2" id="nombre_boxeador2" placeholder="Ingresa el nombre del boxeador 1...">
           </div>
           <div id="div_correo_boxeador2" class="form-group">
               <label  id="labelCorreo_box2"  for="exampleFormControlInput1"> Correo Boxeador 2</label>
               <!--id:"correo_boxeador2" hace match con el campo correo_boxeador2-->
-              <input type="email" class="form-control" id="correo_boxeador2" placeholder="Ingresa el correo del boxeador 2...">
+              <input type="email" class="form-control" name="correo_boxeador2" id="correo_boxeador2" placeholder="Ingresa el correo del boxeador 2...">
           </div>
           <div  id="boxeador2_noregistrado3" class="form-group">
               <label id="labelPeso_box2" for="exampleFormControlInput1">Peso Boxeador 2</label>
               <!--id:"peso_boxeador_2" hace match con el campo peso_boxeador2-->
-              <input  type="text" class="form-control" id="peso_boxeador_2" placeholder="Ingresa el peso del boxeador 1...">
+              <input  type="text" class="form-control" name="peso_boxeador_2" id="peso_boxeador_2" placeholder="Ingresa el peso del boxeador 1...">
           </div>
           <hr />
-
           <br />
           <h5> Datos de la pelea </h5>
           <!--id:"division" hace match con el campo division-->
-          <select id="division" class="form-control">
+          <div class="form-group">
+              <label for="exampleFormControlInput1"  >Fecha pelea* </label>    
+              <input type="date" id="fecha_pelea" name="fecha_pelea" class="form-control">
+
+          </div>
+          <select name="division" id="division" class="form-control">
               <option>Selecciona division para la pelea</option>
-              <option>Division 1</option>
-              <option>Division 2</option>
+              <option>Peso minimo</option>
+              <option>Peso mosca ligero</option>
+              <option>Peso mosca </option>
+              <option>Peso supermosca</option>
+              <option>Peso gallo</option>
+              <option>Peso supergallo</option>
+              <option>Peso pluma</option>
+              <option>Peso superpluma</option>
+              <option>Peso ligero</option>
+              <option>Peso superligero</option>
+              <option>Peso welter</option>
+              <option>Peso superwelter</option>
+              <option>Peso medio</option>
+              <option>Peso supermediano</option>
+              <option>Peso semicompleto</option>
+              <option>Peso crucero</option>
+              <option>Peso completo</option>
+              <option>Peso atomo</option>
           </select>
 
           <!--id:"ganador" hace match con el campo ganador-->
-          <select id="ganador" class="form-control">
+          <select name="ganador" id="ganador" class="form-control">
               <option>Selecciona al ganador</option>
               <option>Boxeador 1</option>
               <option>Boxeador 2</option>
+              <option>Empate</option>
+
           </select>
 
 
           <!--id:"resultado_pelea" hace match con el campo resultado_pelea-->
-          <select id="resultado_pelea" class="form-control">
+          <select name="resultado_pelea" id="resultado_pelea" class="form-control">
               <option>Selecciona el tipo de victoria</option>
-              <option>Victoria 1</option>
-              <option>Victoria 2</option>
+              <option>Victoria por puntos (V.P)</option>
+              <option>Victoria por abandono (V.Ab)</option>
+              <option>Victoria por knock-out (V.K.O)</option>
+              <option>Victoria por knock-ouy tecnico (V.K.O.T)</option>
+              <option>Victoria por decision tecnica (V.D.T)</option>
+              <option>Victoria por descalificacion (V.D)</option>
+              <option>Victoria por abandono (V.Ab)</option>
+              <option>Combate Nulo (C.N)</option>
+              <option>Nulo tecnico (N.T)</option>
+              <option>No contest, Combate sin decision (N.C)</option>
+
           </select>
 
 
@@ -112,13 +143,13 @@
           <div class="form-group">
               <label for="exampleFormControlInput1">Numero de rounds</label>
               <!--id:"rounds" hace match con el campo rounds-->
-              <input type="number" class="form-control" id="rounds" placeholder="Numero de rounds...">
+              <input type="number" name="rounds" class="form-control" id="rounds" placeholder="Numero de rounds...">
           </div>
 
           <div id="notas" class="form-group">
               <label for="exampleFormControlTextarea1">Notas adicionales de la pelea</label>
               <!--id:"notas" hace match con el campo notas-->
-              <textarea class="form-control" id="notas" rows="3" maxlength="255" placeholder="Maximo 255 caracteres"></textarea>
+              <textarea class="form-control" name="notas" id="notas" rows="3" maxlength="255" placeholder="Maximo 255 caracteres"></textarea>
           </div>
           <hr />
 
@@ -133,15 +164,13 @@
           <div id="referi_registrado" style="display: none" class="form-group">
               <label for="exampleFormControlInput1">ID Referi</label>
               <!--id:"id_referi" hace match con el campo id_referi-->
-              <input type="email" class="form-control" id="id_referi" placeholder="Busca al referi por su correo electronico...">
-              <div class="col text-center">
-                  <button id="buscar" type="button" class="btn btn-primary mb-2">Buscar</button>
-              </div>
+              <input type="text" class="form-control" name="id_referi" id="id_referi" placeholder="Busca al referi por su id...">
+
           </div>
           <div id="referi_noregistrado" class="form-group">
               <label for="exampleFormControlInput1">Nombre Referi</label>
               <!--id:"nombre_referi" hace match con el campo nombre_referi-->
-              <input type="text" class="form-control" id="nombre_referi" placeholder="Ingresa el nombre del referi...">
+              <input type="text" class="form-control"  name="nombre_referi" id="nombre_referi" placeholder="Ingresa el nombre del referi...">
           </div>
           <hr />
 
@@ -158,22 +187,20 @@
               <div class="form-group">
                   <label for="exampleFormControlInput1">ID Gym</label>
                   <!--id:"id_gym" hace match con el campo id_gym-->
-                  <input type="email" class="form-control" id="id_gym" placeholder="Busca el gym por correo...">
+                  <input type="text" class="form-control" name="id_gym" id="id_gym" placeholder="Busca el gym por correo...">
               </div>
-              <div class="col text-center">
-                  <button id="buscar" type="button" class="btn btn-primary mb-2">Buscar</button>
-              </div>
+
           </div>
           <div id="gym_noregistrado">
               <div class="form-group">
                   <label for="exampleFormControlInput1">Nombre Gym</label>
                   <!--id:"nombre_gym" hace match con el campo nombre_gym-->
-                  <input type="text" class="form-control" id="nombre_gym" placeholder="Ingresa el nombre del gym...">
+                  <input type="text" class="form-control" name="nombre_gym" id="nombre_gym" placeholder="Ingresa el nombre del gym...">
               </div>
               <div class="form-group">
                   <label for="exampleFormControlInput1">Estado Gym</label>
                   <!--id:"estado_gym" hace match con el campo estado_gym-->
-                  <input type="text" class="form-control" id="estado_gym" placeholder="Ingresa el estado del gym...">
+                  <input type="text" class="form-control" name="estado_gym" id="estado_gym" placeholder="Ingresa el estado del gym...">
               </div>
           </div>
 

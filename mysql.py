@@ -441,7 +441,7 @@ def Entrenadores(name,id):
     curr = mysql.connection.cursor()
 
     cur.execute("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido_paterno, usuarios.apellido_materno, entrenado.no_peleas, usuarios.celular FROM usuarios , entrenado where usuarios.id_usuario = entrenado.id")
-    curr.execute("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido_paterno, usuarios.apellido_materno, entrenado.no_peleas, usuarios.celular FROM usuarios , entrenado where usuarios.id_usuario = entrenado.id AND usuarios.id_usuario = '" + id + "' AND entrenado.id = '" + id + "' ")
+    curr.execute("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido_paterno, usuarios.apellido_materno, entrenado.no_peleas, usuarios.celular FROM usuarios , entrenado where usuarios.id_usuario = entrenado.id_entrenador AND usuarios.id_usuario = '" + id + "' AND entrenado.id_entrenador = '" + id + "' ")
 
     data = cur.fetchall()
     data2 = curr.fetchall()
@@ -538,6 +538,27 @@ def RegistroPeleas(name,id):
         checkbox_box2=request.form.get('bandera_boxeador2')
         checkbox_referi=request.form.get('bandera_referi')
         checkbox_gym=request.form.get('bandera_gym')
+
+
+        #Datos de la peleas
+        division_pelea=userDetails['division']
+        ganador=userDetails['ganador']
+        resultado_pelea=userDetails['resultado_pelea']
+        rounds=userDetails['rounds']
+        notas=userDetails['notas']
+        fecha_pelea=userDetails['fecha_pelea']
+
+
+        registerData.append(division_pelea)
+        registerData.append(ganador)
+        registerData.append(resultado_pelea)
+        registerData.append(ganador)
+        registerData.append(notas)
+        registerData.append(fecha_pelea)
+
+
+
+
         if checkbox_box1:
             id_box1=userDetails['id_boxeador1']
             pesoDBbox1=cursor.execute("SELECT peso FROM boxeadores where  id_boxeador='" + id_box1+ "'")
@@ -550,8 +571,7 @@ def RegistroPeleas(name,id):
             registerData.append(dataNombre1)
 
             print(registerData)
-
-            return ("Success")
+            pass
         else:
             nombre_box1=userDetails['nombre_boxeador1']
             correo_box1=userDetails['correo_boxeador1']
@@ -561,11 +581,66 @@ def RegistroPeleas(name,id):
             registerData.append(correo_box1)
             registerData.append(peso_box1)
             print(registerData)
-            return ("Success")
+            pass
 
+        if checkbox_box2:
+            id_box2=userDetails['id_boxeador2']
+            pesoDBbox2=cursor.execute("SELECT peso FROM boxeadores where  id_boxeador='" + id_box2+ "'")
+            dataPeso2=cursor.fetchone()
+            nombreDBbox2=cursor.execute("SELECT nombre FROM usuarios where id_usuario='"+id_box2+"'")
+            dataNombre2=cursor.fetchone()
+            print(dataPeso2)
+            print(dataNombre2)
+            registerData.append(id_box2)
+            registerData.append(dataPeso2)
+            registerData.append(dataNombre2)
 
+            print(registerData)
+            pass
+        else:
+            nombre_box2=userDetails['nombre_boxeador2']
+            correo_box2=userDetails['correo_boxeador2']
+            peso_box2=userDetails['peso_boxeador_2']
 
+            registerData.append(nombre_box2)
+            registerData.append(correo_box2)
+            registerData.append(peso_box2)
+            print(registerData)
+            pass
 
+        if checkbox_referi:
+            id_referi=userDetails['id_referi']
+            nombreDBReferi=cursor.execute("SELECT nombre FROM usuarios where id_usuario='"+id_referi+"'")
+            dataNombre_referi=cursor.fetchone()
+            registerData.append(id_referi)
+            registerData.append(dataNombre_referi)
+            print(registerData)
+            pass
+        else:
+            nombre_referi=userDetails['nombre_referi']
+            registerData.append(nombre_referi)
+            pass
+
+        if checkbox_gym:
+            id_gym=userDetails['id_gym']
+            nombreDBgym=cursor.execute("SELECT nombre FROM gyms where id_gym='" + id_gym+ "'")
+            dataNombreGym=cursor.fetchone()
+            estadoDBgym=cursor.execute("SELECT estado FROM gyms where id_gym='"+id_gym+"'")
+            dataEstadoGym=cursor.fetchone()
+
+            registerData.append(id_gym)
+            registerData.append(dataNombreGym)
+            registerData.append(dataEstadoGym)
+            print(registerData)
+            return "Success"
+        else:
+            nombre_gym=userDetails['nombre_gym']
+            estado_gym=userDetails['estado_gym']
+            registerData.append(nombre_gym)
+            registerData.append(estado_gym)
+            return "Success"
+
+        
 
 
 #Redireccion a login
