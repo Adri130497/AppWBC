@@ -524,6 +524,13 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 
+#Registro de Entrenamientos
+@app.route("/home/RegistroEntrenamientos/<name>/<int:id>",methods=['GET','POST'])
+def RegistroEntrena(name, id):
+
+
+    return render_template('registro_entrenamientos.html', name=name, id=id)
+
 #Registro de Peleas
 @app.route("/home/RegistroPeleas/<name>/<int:id>",methods=['GET','POST'])
 def RegistroPeleas(name,id):
