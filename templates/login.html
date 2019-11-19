@@ -1,65 +1,69 @@
 <!DOCTYPE html>
+
 <head>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <meta sharset="UTF-8">
-  <title>Tittle</title>
-  <div class="container">
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta sharset="UTF-8">
+    <title>Tittle</title>
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
         {% for message in messages %}
-            <div class="alert alert-danger fade show" role="alert">
-                <span>{{ message }}</span>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <div class="alert alert-danger fade show" role="alert">
+            <span>{{ message }}</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            </button>
+        </div>
         {% endfor %}
-    {% endif %}
-{% endwith %}
+        {% endif %}
+        {% endwith %}
 </head>
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
-  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='login.css')}}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='login.css')}}">
 
 
 
-  <div class="container">
-      <div class="card card-login mx-auto text-center bg-dark">
-          <div class="card-header mx-auto bg-dark">
-              <span> <img src="http://www.wbccaresuk.org/images/logo-large.png" class="w-75" alt="Logo"> </span><br/>
-                <span class="logo_title mt-5"></span>
-                          <span class="logo_title mt-5"> <font size="5" color="white" topmargin= "20px"> Login Dashboard </font></span>
+<div class="container">
+    <div class="card card-login mx-auto text-center bg-dark">
+        <div class="card-header mx-auto bg-dark">
+            <span> <img src="http://www.wbccaresuk.org/images/logo-large.png" class="w-75" alt="Logo"> </span><br />
+            <span class="logo_title mt-5"></span>
+            <span class="logo_title mt-5">
+                <font size="5" color="white" topmargin="20px"> Login Dashboard </font>
+            </span>
 
-          </div>
-
-          <div class="card-body">
-            <form method="POST">
-              <div class="input-group form-group">
-                  <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fas fa-user"></i></span>
-                  </div>
-                  <input name="user" class="form-control">
-              </div>
-
-
-              <div class="input-group form-group">
-                  <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fas fa-key"></i></span>
-                  </div>
-                  <input type="password" name="pass" class="form-control">
-              </div>
-              <div class="border-top pt-1">
-                <small class="text-muted">
-                ¿Usuario nuevo? <a class="ml-2" href="{{ url_for('register') }}">Registrar</a>
-                </small>
-              </div>
-              <div class="msg"> <font size="5" color="Red" topmargin= "20px">{{ msg }}</div>
-              <div class="form-group border-top pt-3">
-                  <input type="submit" name="btn" value="Login" class="btn btn-outline-info">
-              </div>
-              </form>
-          </div>
         </div>
-      </div>
+
+        <div class="card-body">
+            <form method="POST">
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input name="user" class="form-control">
+                </div>
+
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="password" name="pass" class="form-control">
+                </div>
+                <div class="border-top pt-1">
+                    <small class="text-muted">
+                        ¿Usuario nuevo? <a class="ml-2" href="{{ url_for('register') }}">Registrar</a>
+                    </small>
+                </div>
+                <div class="msg">
+                    <font size="5" color="Red" topmargin="20px">{{ msg }}
+                </div>
+                <div class="form-group border-top pt-3">
+                    <input type="submit" name="btn" value="Login" class="btn btn-outline-info">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

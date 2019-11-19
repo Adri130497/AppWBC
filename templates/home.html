@@ -33,7 +33,8 @@
         <div style="color: white;
             padding: 30px 50px 5px 50px;
             float: right;
-            font-size: 16px;"> ID: {{id}} &nbsp; <a href="/login" class="btn btn-danger square-btn-adjust">Cerrar Sesion</a>
+            font-size: 16px;"> ID: {{id}} &nbsp; <a href="/login" class="btn btn-danger square-btn-adjust">Cerrar
+            Sesion</a>
         </div>
       </nav>
       <!-- /. NAV TOP  -->
@@ -47,11 +48,11 @@
               <h3>{{name}}</h3>
             </li>
             <li>
-              <a  href="{{ url_for('Entrenadores', name=name, id=id) }}"></i> Entrenadores</a>
+              <a href="{{ url_for('Entrenadores', name=name, id=id) }}"></i> Entrenadores</a>
             </li>
 
             <li>
-              <a  href="{{ url_for('Gimnasios', name=name, id=id) }}"></i> Gimnasios</a>
+              <a href="{{ url_for('Gimnasios', name=name, id=id) }}"></i> Gimnasios</a>
             </li>
             <li>
               <a href="{{ url_for('RegistroPeleas', name=name, id=id) }}"></i> Registro de Peleas</a>
