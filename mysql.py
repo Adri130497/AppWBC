@@ -531,25 +531,91 @@ def logout():
 # Registro de Entrenamientos
 @app.route("/home/RegistroEntrenamientos/<name>/<int:id>", methods=['GET', 'POST'])
 def RegistroEntrena(name, id):
+    msg='Registro exitoso'
+    cursor = mysql.connection.cursor()
+    if request.method == 'GET':
+        return render_template('registro_entrenamientos.html', name=name, id=id)
+    else:
+        registrar_entrene=("INSERT INTO entrena (id_boxeador,id_gym,id_entrenador,fecha_registro,notas)"
+                            "VALUES (%s,%s,%s,%s,%s)")
+        userDetails = request.form
+        checkbox_box = request.form.get('bandera_boxeador')
+        checkbox_entrena = request.form.get('bandera_entrenador')
+        checkbox_gym = request.form.get('bandera_gym')
+        
+        
+        fecha_entrenamiento = userDetails['fecha_entrenamiento']
+        notas_entrenamiento = userDetails['notas']
 
-    return render_template('registro_entrenamientos.html', name=name, id=id)
+        if checkbox_box=="true":
+            id_boxeador = userDetails['id_boxeador']
+            nombreboxeador = cursor.execute(
+                "SELECT nombre FROM usuarios where id_usuario='"+id_boxeador+"'")
+            nombre_boxeador = cursor.fetchone()
+            pass
+        else:
+            nombre_boxeador = userDetails['nombre_boxeador']
+            correo_boxeador = userDetails['correo_boxeador']
+        
+        if checkbox_entrena:
+            id_entrenador = userDetails['id_entrenador']
+            nombreentrenador = cursor.execute(
+                "SELECT nombre FROM usuarios where id_usuario='"+id_entrenador+"'")
+            nombre_entrenador = cursor.fetchone()
+            pass
+        else:
+            nombre_entrenador = userDetails['nombre_entrenador']
+            correo_entrenador = userDetails['correo_entrenador']
+        
+        if checkbox_gym:
+            id_gym = userDetails['id_gym']
+            nombregym = cursor.execute(
+                "SELECT nombre FROM gyms where id_gym='"+id_gym+"'")
+            nombre_gym = cursor.fetchone()
+            pass
+        else:
+            nombre_gym = userDetails['nombre_gym']
+            estado_gym = userDetails['estado_gym']
+
+        print(checkbox_box)
+        print(id_boxeador)
+        print(id_gym)
+        print(id_entrenador)
+        print(fecha_entrenamiento)
+        
+        user_data = (id_boxeador,id_gym,id_entrenador,fecha_entrenamiento,notas_entrenamiento)
+
+        cursor.execute(registrar_entrene, user_data)
+        print("Registrado en BD")
+
+        mysql.connection.commit()
+        cursor.close()
+        return render_template('registro_entrenamientos.html', name=name, id=id, msg=msg)
+
 
 # Registro de Peleas
 @app.route("/home/RegistroPeleas/<name>/<int:id>", methods=['GET', 'POST'])
 def RegistroPeleas(name, id):
-    msg = ''
+    msg='Registro exitoso'
     cursor = mysql.connection.cursor()
-    registerData = list()
     if request.method == 'GET':
         return render_template('registro_Peleas.html', title='Registro Peleas')
     else:
+        registrar_pelea = ("INSERT INTO peleas (id_boxeador1,peso_boxeador_1,id_boxeador2,peso_boxeador_2,nombre_boxeador1, nombre_boxeador2,id_gym,nombre_gym,estado_gym,rounds,ganador,resultado_pelea,id_referi,nombre_referi, fecha,notas,division,correo_boxeador1,correo_boxeador2)"
+                           "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
+        
+        id_box1 = 0
+        id_box2 = 0
+        id_gym = 0
+        id_referi = 0
+
         userDetails = request.form
         checkbox_box1 = request.form.get('bandera_boxeador1')
         checkbox_box2 = request.form.get('bandera_boxeador2')
         checkbox_referi = request.form.get('bandera_referi')
         checkbox_gym = request.form.get('bandera_gym')
 
-        # Datos de la peleas
+         # Datos de la peleas
         division_pelea = userDetails['division']
         ganador = userDetails['ganador']
         resultado_pelea = userDetails['resultado_pelea']
@@ -557,111 +623,73 @@ def RegistroPeleas(name, id):
         notas = userDetails['notas']
         fecha_pelea = userDetails['fecha_pelea']
 
-        registerData.append(division_pelea)
-        registerData.append(ganador)
-        registerData.append(resultado_pelea)
-        registerData.append(ganador)
-        registerData.append(notas)
-        registerData.append(fecha_pelea)
-
         if checkbox_box1:
             id_box1 = userDetails['id_boxeador1']
-            pesoDBbox1 = cursor.execute(
+            pesobox1 = cursor.execute(
                 "SELECT peso FROM boxeadores where  id_boxeador='" + id_box1 + "'")
-            dataPeso1 = cursor.fetchone()
-            nombreDBbox1 = cursor.execute(
+            peso_box1 = cursor.fetchone()
+            nombrebox1 = cursor.execute(
                 "SELECT nombre FROM usuarios where id_usuario='"+id_box1+"'")
-            dataNombre1 = cursor.fetchone()
-
-            registerData.append(id_box1)
-            registerData.append(dataPeso1)
-            registerData.append(dataNombre1)
-
-            print(registerData)
+            nombre_box1 = cursor.fetchone()
+            correobox1 = cursor.execute("SELECT email FROM usuarios JOIN boxeadores on usuarios.id_usuario = boxeadores.id_boxeador WHERE id_boxeador="+id_box1)
+            correo_box1 = cursor.fetchone()
             pass
+        
         else:
             nombre_box1 = userDetails['nombre_boxeador1']
             correo_box1 = userDetails['correo_boxeador1']
             peso_box1 = userDetails['peso_boxeador_1']
 
-            registerData.append(nombre_box1)
-            registerData.append(correo_box1)
-            registerData.append(peso_box1)
-            print(registerData)
-            pass
-
         if checkbox_box2:
             id_box2 = userDetails['id_boxeador2']
-            pesoDBbox2 = cursor.execute(
+            peso_box2 = cursor.execute(
                 "SELECT peso FROM boxeadores where  id_boxeador='" + id_box2 + "'")
             dataPeso2 = cursor.fetchone()
-            nombreDBbox2 = cursor.execute(
+            nombrebox2 = cursor.execute(
                 "SELECT nombre FROM usuarios where id_usuario='"+id_box2+"'")
-            dataNombre2 = cursor.fetchone()
+            nombre_box2 = cursor.fetchone()
+            correobox2 = cursor.execute("SELECT email FROM usuarios JOIN boxeadores on usuarios.id_usuario = boxeadores.id_boxeador WHERE id_boxeador="+id_box2)
+            correo_box2 = cursor.fetchone()
             print(dataPeso2)
-            print(dataNombre2)
-            registerData.append(id_box2)
-            registerData.append(dataPeso2)
-            registerData.append(dataNombre2)
-
-            print(registerData)
+            print(correo_box2)
             pass
+        
         else:
             nombre_box2 = userDetails['nombre_boxeador2']
             correo_box2 = userDetails['correo_boxeador2']
             peso_box2 = userDetails['peso_boxeador_2']
 
-            registerData.append(nombre_box2)
-            registerData.append(correo_box2)
-            registerData.append(peso_box2)
-            print(registerData)
-            pass
-
         if checkbox_referi:
             id_referi = userDetails['id_referi']
-            nombreDBReferi = cursor.execute(
+            nombrereferi = cursor.execute(
                 "SELECT nombre FROM usuarios where id_usuario='"+id_referi+"'")
-            dataNombre_referi = cursor.fetchone()
-            registerData.append(id_referi)
-            registerData.append(dataNombre_referi)
-            print(registerData)
+            nombre_referi = cursor.fetchone()
             pass
+        
         else:
             nombre_referi = userDetails['nombre_referi']
-            registerData.append(nombre_referi)
-            pass
-
+        
         if checkbox_gym:
             id_gym = userDetails['id_gym']
-            nombreDBgym = cursor.execute(
+            nombregym = cursor.execute(
                 "SELECT nombre FROM gyms where id_gym='" + id_gym + "'")
-            dataNombreGym = cursor.fetchone()
-            estadoDBgym = cursor.execute(
+            nombre_gym = cursor.fetchone()
+            estadogym = cursor.execute(
                 "SELECT estado FROM gyms where id_gym='"+id_gym+"'")
-            dataEstadoGym = cursor.fetchone()
-            registerData.append(id_gym)
-            registerData.append(dataNombreGym)
-            registerData.append(dataEstadoGym)
-            print(registerData)
-            return "Success"
+            estado_gym = cursor.fetchone()
+            pass
+        
         else:
             nombre_gym = userDetails['nombre_gym']
             estado_gym = userDetails['estado_gym']
-            registerData.append(nombre_gym)
-            registerData.append(estado_gym)
-            return "Success"
-
-        registrar_pelea = ("INSERT INTO peleas (id_boxeador1,peso_boxeador_1,id_boxeador2,peso_boxeador_2,nombre_boxeador1, nombre_boxeador2,id_gym,nombre_gym,estado_gym,rounds,ganador,resultado_pelea,id_referi,nombre_referi, fecha,notas,division,correo_boxeador1,correo_boxeador2)"
-                           "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
-
-        user_data = (id_box1,peso_box1,id_box2,peso_box2,nombre_box1,nombre_box2,id_gym,nombre_gym,estado_gym,rounds,ganador,resultado_pelea,
-        id_referi,nombre_referi,fecha_pelea,notas,division_pelea,correo_box1,correo_box2)
         
+        user_data = (id_box1,peso_box1,id_box2,peso_box2,nombre_box1,nombre_box2,id_gym,nombre_gym,estado_gym,rounds,ganador,resultado_pelea,id_referi,nombre_referi,fecha_pelea,notas,division_pelea,correo_box1,correo_box2)
+
         cursor.execute(registrar_pelea, user_data)
 
         mysql.connection.commit()
         cursor.close()
-        return redirect(url_for('home'))
+        return render_template('registro_Peleas.html', title='Registro Peleas', msg=msg)
 
 # Redireccion a login
 @app.route('/', methods=['GET', 'POST'])

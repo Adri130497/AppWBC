@@ -1,182 +1,170 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="{{url_for('static', filename='pelea.css')}}">
-  </head>
-  <body>
-    <div class="container">
-        <div class="col text-left">
-        </div>
-      <div class="col text-center">
-        <img id="logo" src="{{url_for('static', filename='logo-large.png')}}" alt="logo wbc">
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="{{url_for('static', filename='pelea.css')}}">
+</head>
+
+<body>
+  <div class="container">
+    <div class="col text-left">
+        <font size="4" color="black" topmargin="20px">{{ msg }}
+    </div>
+    <div class="col text-center">
+      <img id="logo" src="{{url_for('static', filename='logo-large.png')}}" alt="logo wbc">
+    </div>
+
+
+    <form method="POST">
+      <br />
+      <h5> Datos del Boxeador </h5>
+      <div id="checkbox" class="form-check">
+        <!--id:"bandera_boxeador1" hace match con el campo bandera_boxeador1-->
+        <input type="checkbox" value="true" data-val="true" class="form-check-input" name="bandera_boxeador" id="bandera_boxeador"
+          onclick="checkfunction()">
+        <label class="form-check-label" for="exampleCheck1">¿Boxeador registrado?</label>
+      </div>
+      <!--informacion mostrada si el checkbox se marca-->
+      <div id="boxeador_registrado" style="display: none" class="form-group">
+        <label>ID Boxeador</label>
+        <!--se ingresa el correo, se busca el id asociado a ese correo y si este id tiene un registro de boxeador, se guarda en bd
+        el id en el campo id_boxeador-->
+        <input type="text" class="form-control" name="id_boxeador" id="id_boxeador"
+          placeholder="Busca al boxeador por su id...">
+
+      </div>
+      <!--informacion si el boxeador no esta registrado-->
+      <label><a class="ml-2" href="/register/boxeador">¿No está registrado su boxeador? Ir a registro</a></label>
+      <hr />
+
+      <br />
+      <h5>Datos del Entrenador</h5>
+      <div id="checkbox" class="form-check">
+        <!--id:"bandera_entrenador" hace match con el campo bandera_entrenador-->
+        <input type="checkbox" class="form-check-input" name="bandera_entrenador" id="bandera_entrenador"
+          onclick="checkfunction2()">
+        <label class="form-check-label" for="exampleCheck1">¿Entrenador registrado?</label>
+      </div>
+      <!--informacion mostrada si el checkbox se marca-->
+      <div id="entrenador_registrado" style="display: none" class="form-group">
+        <label>ID Entrenador</label>
+        <!--se ingresa el correo, se busca el id asociado a ese correo y si este id tiene un registro de entrenador, se guarda en bd
+        el id en el campo id_entrenador-->
+        <input type="text" class="form-control" name="id_entrenador" id="id_entrenador"
+          placeholder="Busca al entrenador por su id...">
+
+      </div>
+      <!--informacion si el entrenador no esta registrado-->
+      <label><a class="ml-2" href="/register/entrenador">¿No está registrado su entrenador? Ir a registro</a></label>
+      <hr />
+
+      <br />
+      <h5> Datos del Entrenamiento </h5>
+      <!--id:"division" hace match con el campo division-->
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Fecha de Inicio del Entrenamiento* </label>
+        <input type="date" id="fecha_entrenamiento" name="fecha_entrenamiento" class="form-control">
       </div>
 
-      <form method="POST">
-          <br />
-          <h5> Datos del Boxeador </h5>
-          <div id="checkbox" class="form-check">
-              <!--id:"bandera_boxeador1" hace match con el campo bandera_boxeador1-->
-              <input type="checkbox" class="form-check-input" name="bandera_boxeador" id="bandera_boxeador" onclick="checkfunction()">
-              <label class="form-check-label" for="exampleCheck1">¿Boxeador registrado?</label>
-          </div>
-          <!--informacion mostrada si el checkbox se marca-->
-          <div id="boxeador_registrado" style="display: none" class="form-group">
-              <label>ID Boxeador</label>
-              <!--se ingresa el correo, se busca el id asociado a ese correo y si este id tiene un registro de boxeador, se guarda en bd
-        el id en el campo id_boxeador-->
-              <input type="text" class="form-control" name="id_boxeador" id="id_boxeador" placeholder="Busca al boxeador por su id...">
+      <div id="notas" class="form-group">
+        <label for="exampleFormControlTextarea1">Notas adicionales del entrenamiento</label>
+        <!--id:"notas" hace match con el campo notas-->
+        <textarea class="form-control" name="notas" id="notas" rows="3" maxlength="255"
+          placeholder="Maximo 255 caracteres"></textarea>
+      </div>
+      <hr />
 
-          </div>
-          <!--informacion si el boxeador no esta registrado-->
-          <div id="boxeador_noregistrado" class="form-group">
-              <label for="exampleFormControlInput1">Nombre Boxeador</label>
-              <!--id:"nombre_boxeador" hace match con el campo nombre_boxeador-->
-              <input type="text" class="form-control" name="nombre_boxeador" id="nombre_boxeador" placeholder="Ingresa el nombre del boxeador...">
-          </div>
-          <div id="boxeador_noregistrado" class="form-group">
-              <!--id:"correo_boxeador1" hace match con el campo correo_boxeador1-->
-              <label id="labelCorreo_box" for="exampleFormControlInput1">Correo Boxeador</label>
-              <input type="email" class="form-control" name="correo_boxeador" id="correo_boxeador" placeholder="Ingresa el correo del boxeador...">
-          </div>
-          <hr />
+      <br />
+      <h5> Datos del gym </h5>
+      <div id="checkbox" class="form-check">
+        <!--id:"bandera_gym" hace match con el campo bandera_gym-->
+        <input type="checkbox" class="form-check-input" name="bandera_gym" id="bandera_gym"
+          onclick="checkfunctionGym()">
+        <label class="form-check-label" for="exampleCheck1">¿Gym Registrado?</label>
+      </div>
+      <!--info si el gym esta registrado-->
+      <div style="display: none" id="gym_registrado">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">ID Gym</label>
+          <!--id:"id_gym" hace match con el campo id_gym-->
+          <input type="text" class="form-control" name="id_gym" id="id_gym" placeholder="Busca el gym por correo...">
+        </div>
+      </div>
+      <label><a class="ml-2" href="/register/dueno">¿No está registrado su gimnasio? Ir a registro</a></label>
+      <hr />
 
-          <br />
-          <h5>Datos del Entrenador</h5>
-          <div id="checkbox" class="form-check">
-              <!--id:"bandera_entrenador" hace match con el campo bandera_entrenador-->
-              <input type="checkbox" class="form-check-input" name="bandera_entrenador" id="bandera_entrenador" onclick="checkfunction2()">
-              <label class="form-check-label" for="exampleCheck1">¿Entrenador registrado?</label>
-          </div>
-          <!--informacion mostrada si el checkbox se marca-->
-          <div id="entrenador_registrado" style="display: none" class="form-group">
-              <label>ID Entrenador</label>
-              <!--se ingresa el correo, se busca el id asociado a ese correo y si este id tiene un registro de entrenador, se guarda en bd
-        el id en el campo id_entrenador-->
-              <input type="text" class="form-control" name="id_entrenador" id="id_entrenador" placeholder="Busca al entrenador por su id...">
+      <div class="col text-center">
+        <button id="registrar" type="submit" class="btn btn-primary mb-2">Registrar Entrenamiento</button>
+      </div>
+    </form>
+  </div>
+</body>
+<script>
+  function checkfunction() {
+    var checkbox = document.getElementById("bandera_boxeador");
+    var id_boxeador = document.getElementById("boxeador_registrado");
+    var nombre_boxeador = document.getElementById("boxeador_noregistrado");
+    var correo_boxeador = document.getElementById("correo_boxeador");
+    var correo_boxeadorLabel = document.getElementById("labelCorreo_box");
+    if (checkbox.checked == true) {
+      id_boxeador.style.display = "block";
+      nombre_boxeador.style.display = "none";
+      correo_boxeador.style.display = "none";
+      correo_boxeadorLabel1.style.display = "none";
+    }
+    else {
+      id_boxeador.style.display = "none";
+      nombre_boxeador.style.display = "block";
+      correo_boxeador.style.display = "block";
+      correo_boxeadorLabel1.style.display = "block";
+    }
+  }
 
-          </div>
-          <!--informacion si el entrenador no esta registrado-->
-          <div id="entrenador_noregistrado" class="form-group">
-              <label for="exampleFormControlInput1">Nombre Entrenador</label>
-              <!--id:"nombre_entrenador" hace match con el campo nombre_entrenador-->
-              <input type="text" class="form-control" name="nombre_entrenador" id="nombre_entrenador" placeholder="Ingresa el nombre del entrenador...">
-          </div>
-          <div id="entrenador_noregistrado" class="form-group">
-              <!--id:"correo_entrenador" hace match con el campo correo_entrenador-->
-              <label id="labelCorreo_ent" for="exampleFormControlInput1">Correo Entrenador</label>
-              <input type="email" class="form-control" name="correo_entrenador" id="correo_entrenador" placeholder="Ingresa el correo del entrenador...">
-          </div>
-          <hr />
+  function checkfunction2() {
+    var checkbox = document.getElementById("bandera_entrenador");
+    var id_entrenador = document.getElementById("entrenador_registrado");
+    var nombre_entrenador = document.getElementById("entrenador_noregistrado");
+    var correo_entrenador = document.getElementById("correo_entrenador");
+    var correo_entrenadorLabel = document.getElementById("labelCorreo_ent");
+    if (checkbox.checked == true) {
+      id_entrenador.style.display = "block";
+      nombre_entrenador.style.display = "none";
+      correo_entrenador.style.display = "none";
+      correo_entrenadorLabel1.style.display = "none";
+    }
+    else {
+      id_entrenador.style.display = "none";
+      nombre_entrenador.style.display = "block";
+      correo_entrenador.style.display = "block";
+      correo_entrenadorLabel1.style.display = "block";
+    }
+  }
 
-          <br />
-          <h5> Datos del Entrenamiento </h5>
-          <!--id:"division" hace match con el campo division-->
-          <div class="form-group">
-              <label for="exampleFormControlInput1"  >Fecha Entrenamiento* </label>
-              <input type="date" id="fecha_entrenamiento" name="fecha_entrenamiento" class="form-control">
-          </div>
+  function checkfunctionGym() {
+    var checkbox = document.getElementById("bandera_gym");
+    var id_gym = document.getElementById("gym_registrado");
+    var nombre_gym = document.getElementById("gym_noregistrado");
+    if (checkbox.checked == true) {
+      id_gym.style.display = "block";
+      nombre_gym.style.display = "none";
+    }
+    else {
+      id_gym.style.display = "none";
+      nombre_gym.style.display = "block";
+    }
+  }
+</script>
 
-          <div id="notas" class="form-group">
-              <label for="exampleFormControlTextarea1">Notas adicionales del entrenamiento</label>
-              <!--id:"notas" hace match con el campo notas-->
-              <textarea class="form-control" name="notas" id="notas" rows="3" maxlength="255" placeholder="Maximo 255 caracteres"></textarea>
-          </div>
-          <hr />
-
-          <br />
-          <h5> Datos del gym </h5>
-          <div id="checkbox" class="form-check">
-              <!--id:"bandera_gym" hace match con el campo bandera_gym-->
-              <input type="checkbox" class="form-check-input" name="bandera_gym" id="bandera_gym" onclick="checkfunctionGym()">
-              <label class="form-check-label" for="exampleCheck1">¿Gym Registrado?</label>
-          </div>
-          <!--info si el gym esta registrado-->
-          <div style="display: none" id="gym_registrado">
-              <div class="form-group">
-                  <label for="exampleFormControlInput1">ID Gym</label>
-                  <!--id:"id_gym" hace match con el campo id_gym-->
-                  <input type="text" class="form-control" name="id_gym" id="id_gym" placeholder="Busca el gym por correo...">
-              </div>
-
-          </div>
-          <div id="gym_noregistrado">
-              <div class="form-group">
-                  <label for="exampleFormControlInput1">Nombre Gym</label>
-                  <!--id:"nombre_gym" hace match con el campo nombre_gym-->
-                  <input type="text" class="form-control" name="nombre_gym" id="nombre_gym" placeholder="Ingresa el nombre del gym...">
-              </div>
-              <div class="form-group">
-                  <label for="exampleFormControlInput1">Estado Gym</label>
-                  <!--id:"estado_gym" hace match con el campo estado_gym-->
-                  <input type="text" class="form-control" name="estado_gym" id="estado_gym" placeholder="Ingresa el estado del gym...">
-              </div>
-          </div>
-          <hr />
-
-          <div class="col text-center">
-              <button id="registrar" type="submit" class="btn btn-primary mb-2">Registrar Entrenamiento</button>
-          </div>
-      </form>
-    </div>
-  </body>
-    <script>
-        function checkfunction(){
-          var checkbox = document.getElementById("bandera_boxeador");
-          var id_boxeador = document.getElementById("boxeador_registrado");
-          var nombre_boxeador = document.getElementById("boxeador_noregistrado");
-          var correo_boxeador = document.getElementById("correo_boxeador");
-          var correo_boxeadorLabel = document.getElementById("labelCorreo_box");
-          if(checkbox.checked == true){
-            id_boxeador.style.display ="block";
-            nombre_boxeador.style.display ="none";
-            correo_boxeador.style.display="none";
-            correo_boxeadorLabel1.style.display="none";
-          }
-          else{
-            id_boxeador.style.display ="none";
-            nombre_boxeador.style.display="block";
-            correo_boxeador.style.display="block";
-            correo_boxeadorLabel1.style.display="block";
-          }
-        }
-
-        function checkfunction2(){
-          var checkbox = document.getElementById("bandera_entrenador");
-          var id_entrenador = document.getElementById("entrenador_registrado");
-          var nombre_entrenador = document.getElementById("entrenador_noregistrado");
-          var correo_entrenador = document.getElementById("correo_entrenador");
-          var correo_entrenadorLabel = document.getElementById("labelCorreo_ent");
-          if(checkbox.checked == true){
-            id_entrenador.style.display ="block";
-            nombre_entrenador.style.display ="none";
-            correo_entrenador.style.display="none";
-            correo_entrenadorLabel1.style.display="none";
-          }
-          else{
-            id_entrenador.style.display ="none";
-            nombre_entrenador.style.display="block";
-            correo_entrenador.style.display="block";
-            correo_entrenadorLabel1.style.display="block";
-          }
-        }
-
-        function checkfunctionGym(){
-          var checkbox = document.getElementById("bandera_gym");
-          var id_gym = document.getElementById("gym_registrado");
-          var nombre_gym = document.getElementById("gym_noregistrado");
-          if(checkbox.checked == true){
-            id_gym.style.display ="block";
-            nombre_gym.style.display ="none";
-          }
-          else{
-            id_gym.style.display ="none";
-            nombre_gym.style.display="block";
-          }
-        }
-    </script>
 </html>
